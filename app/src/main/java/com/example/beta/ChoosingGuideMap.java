@@ -3,6 +3,7 @@ package com.example.beta;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class ChoosingGuideMap extends AppCompatActivity {
 
@@ -10,5 +11,8 @@ public class ChoosingGuideMap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing_guide_map);
+    }
+
+    public void newPath(View view) {
     }
 }

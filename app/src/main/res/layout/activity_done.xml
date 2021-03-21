@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    tools:context=".ChoosingGuideMap"
+    tools:context=".Done"
     android:background="#3B4287">
 
 
@@ -27,68 +27,89 @@
             android:layout_weight="10" />
 
 
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            app:srcCompat="@drawable/vicon" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
             android:fontFamily="@font/faster_one"
-            android:text="Choose A Path:"
+            android:gravity="center"
+            android:text="Done!"
             android:textColor="#E3E5FA"
-            android:textSize="30sp" />
+            android:textSize="33sp" />
 
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:fontFamily="@font/faster_one"
+            android:gravity="center"
+            android:text="you've arrived your destination!"
+            android:textColor="#E3E5FA"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7" />
-
-        <ListView
-            android:id="@+id/lvC"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="50"
-            android:background="#E3E5FA">
-
-        </ListView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10" />
+            android:layout_weight="8" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
+            android:layout_weight="5"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_weight="1" />
 
             <Button
+                android:id="@+id/btn"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="6"
-                android:background="#9AA0DC"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="#FF0000"
                 android:fontFamily="@font/faster_one"
-                android:gravity="center"
-                android:onClick="newPath"
-                android:text="new path"
+                android:onClick="info"
+                android:text="info"
                 android:textSize="20sp" />
 
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="#9AA0DC"
+                android:fontFamily="@font/faster_one"
+                android:onClick="back"
+                android:text="back"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
         </LinearLayout>
+
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="20" />
+            android:layout_weight="10" />
     </LinearLayout>
 
     <Space

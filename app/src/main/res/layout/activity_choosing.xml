@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="what are you? "
             android:textColor="#E3E5FA"
-            android:textSize="65sp" />
+            android:textSize="40sp" />
 
 
         <Space
@@ -66,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="4"
+                    android:onClick="guider"
                     app:srcCompat="@drawable/guidepic" />
 
 
@@ -78,7 +79,7 @@
                     android:gravity="center"
                     android:text="Guider"
                     android:textColor="#E3E5FA"
-                    android:textSize="30sp" />
+                    android:textSize="20sp" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -102,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="4"
+                    android:onClick="navigator"
                     app:srcCompat="@drawable/searchpic" />
 
 
@@ -113,7 +115,7 @@
                     android:gravity="center"
                     android:text="Navigator"
                     android:textColor="#E3E5FA"
-                    android:textSize="30sp" />
+                    android:textSize="20sp" />
 
                 <Space
                     android:layout_width="match_parent"

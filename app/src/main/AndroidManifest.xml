@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddingPlace"></activity>
+        <activity android:name=".Done"></activity>
+        <activity android:name=".Navigating" />
+        <activity android:name=".PlaceInfo" />
+        <activity android:name=".StartingAndEnding" />
+        <activity android:name=".SearchingPath" />
+        <activity android:name=".NewPath" />
+        <activity android:name=".AddingPlace" />
         <activity android:name=".CreatingPath" />
         <activity android:name=".ChoosingStartingPoint" />
         <activity android:name=".ChoosingGuideMap" />

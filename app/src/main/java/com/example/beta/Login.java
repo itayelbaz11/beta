@@ -19,6 +19,6 @@ public class Login extends AppCompatActivity {
         startActivity(si);
     }
 
-    public void Login(View view) {
+    public void logIn(View view) {
     }
 }

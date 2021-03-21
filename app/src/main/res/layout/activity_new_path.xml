@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    tools:context=".credits"
+    tools:context=".NewPath"
     android:background="#3B4287">
 
 
@@ -33,25 +33,44 @@
             android:layout_height="0dp"
             android:layout_weight="10"
             android:fontFamily="@font/faster_one"
-            android:text="Credits "
+            android:gravity="center"
+            android:text="New Path! "
             android:textColor="#E3E5FA"
-            android:textSize="48sp" />
+            android:textSize="36sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4" />
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Path's Name- Where Are you?"
+            android:background="#E3E5FA"
+            />
 
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="3" />
 
-        <TextView
+
+        <Button
+            android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="6"
+            android:background="#9AA0DC"
             android:fontFamily="@font/faster_one"
-            android:text="hello, mt name is Itay and This is mt app "
-            android:textColor="#E3E5FA"
+            android:text="enter"
+            android:onClick="newPathName"
             android:textSize="20sp" />
-
 
         <Space
             android:layout_width="match_parent"
