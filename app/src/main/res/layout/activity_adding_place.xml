@@ -58,7 +58,7 @@ android:background="#3B4287">
         android:layout_weight="4" />
 
     <EditText
-        android:id="@+id/search"
+        android:id="@+id/emailR"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
@@ -89,7 +89,7 @@ android:background="#3B4287">
         android:layout_weight="4" />
 
     <EditText
-        android:id="@+id/P"
+        android:id="@+id/passwordL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="20"

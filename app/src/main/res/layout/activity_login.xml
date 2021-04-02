@@ -43,15 +43,14 @@
             android:layout_weight="4" />
 
         <EditText
-            android:id="@+id/search"
+            android:id="@+id/emailL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Enter Name"
             android:background="#E3E5FA"
-            />
+            android:ems="10"
+            android:hint="Enter E-mail"
+            android:inputType="textPersonName" />
 
         <Space
             android:layout_width="match_parent"
@@ -59,7 +58,7 @@
             android:layout_weight="8" />
 
         <EditText
-            android:id="@+id/P"
+            android:id="@+id/passwordL"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
@@ -70,9 +69,22 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="0dp"
             android:layout_weight="6" />
 
+
+        <CheckBox
+            android:id="@+id/cB"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:text="stay connected?"
+            android:textColor="#E3E5FA" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6" />
 
         <Button
             android:layout_width="match_parent"

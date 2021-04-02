@@ -3,7 +3,11 @@ package com.example.beta;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,20 +16,27 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+
+import static com.example.beta.FBref.refAuth;
+import static com.example.beta.FBref.refUsers;
 
 public class Register extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    EditText N,P;
+    EditText Email,PassWord,Name;
+    String name,uid,password,email;
+    User userdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        N=(EditText) findViewById(R.id.N);
-        P=(EditText) findViewById(R.id.P);
+        Name=(EditText) findViewById(R.id.nameR);
+        Email=(EditText) findViewById(R.id.emailR);
+        PassWord=(EditText) findViewById(R.id.passwordR);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -52,27 +63,40 @@ public class Register extends AppCompatActivity {
      */
     public void register(View view) {
 
-        String email=N.getText().toString();
-        String password=P.getText().toString();
-
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(Register.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                    updateUI(null);
-                }
-
-                // ...
-            }
+        name=Name.getText().toString();
+        email=Email.getText().toString();
+        password=PassWord.getText().toString();
 
 
-        });
+        final ProgressDialog pd=ProgressDialog.show(this,"Register","Registering...",true);
+        refAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        pd.dismiss();
+                        if (task.isSuccessful()) {
+                            //SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
+                            //SharedPreferences.Editor editor=settings.edit();
+                           // editor.putBoolean("stayConnect",cBstayconnect.isChecked());
+                           // editor.commit();
+                            Log.d("MainActivity", "createUserWithEmail:success");
+                            FirebaseUser user = refAuth.getCurrentUser();
+                            uid = user.getUid();
+                            userdb=new User(name,email,uid,true);
+                            refUsers.child(uid).setValue(userdb);
+                            Toast.makeText(Register.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                            Intent si = new Intent(Register.this,Login.class);
+                            si.putExtra("newuser",true);
+                            startActivity(si);
+                        } else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                                Toast.makeText(Register.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
+                            else {
+                                Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(Register.this, "User create failed.",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
     }
 }
