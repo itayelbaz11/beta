@@ -53,10 +53,11 @@ public class ChoosingStartingPoint extends AppCompatActivity implements AdapterV
             @Override
             public void onCancelled(DatabaseError databaseError) { }
         });
-
-        Plist=map.getPlaces();
-        for(int i=0;i<Plist.size();i++){
-            PStList.add(Plist.get(i).name);
+        if(map.getPlaces()!=null){
+            Plist=map.getPlaces();
+            for(int i=0;i<Plist.size();i++){
+                PStList.add(Plist.get(i).name);
+            }
         }
 
         adp = new ArrayAdapter<String>(ChoosingStartingPoint.this,R.layout.support_simple_spinner_dropdown_item, PStList);

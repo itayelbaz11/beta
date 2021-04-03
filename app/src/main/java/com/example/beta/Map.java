@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class Map {
     private String uid,mapname,uidcreator;
-    private int[][] path;
+    private ArrayList<ArrayList<Boolean>> path;
     private ArrayList<Place> places;
     boolean publicc;
+    private int size;
 
     public Map(){}
-    public Map(String uid,String mapname,String uidcreator,int[][] path,ArrayList<Place> places,boolean publicc){
+    public Map(String uid,String mapname,String uidcreator,ArrayList<ArrayList<Boolean>> path,ArrayList<Place> places,boolean publicc){
         this.uid=uid;
         this.mapname=mapname;
         this.uidcreator=uidcreator;
@@ -31,7 +32,7 @@ public class Map {
         return uidcreator;
     }
 
-    public int[][] getPath() {
+    public ArrayList<ArrayList<Boolean>> getPath() {
         return path;
     }
 
@@ -55,7 +56,7 @@ public class Map {
         this.uidcreator = uidcreator;
     }
 
-    public void setPath(int[][] path) {
+    public void setPath(ArrayList<ArrayList<Boolean>> path) {
         this.path = path;
     }
 
