@@ -174,22 +174,7 @@ public class NewPath extends AppCompatActivity {
 
                 }
             });
-
-
-            ImageImagesRef.child("images/"+ mapId+".jpg")
-                    .getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    path=uri.toString();
-
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle any errors
-                    Toast.makeText(NewPath.this, "did not got url", Toast.LENGTH_SHORT).show(); //למחוק עוד מעט
-                }
-            });
+            
 
             ArrayList<Place> places=new ArrayList<Place>();
             newMap=new Map(mapId,pathName,id,path,places,publicc);

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -102,9 +103,9 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
     }
 
     public void searchP(View view) {
-        String pathname;
+        /* String pathname;
         pathname=et.getText().toString();
-        Query query = refMaps.orderByChild("mapname").equalTo(pathname);
+        Query query = refMaps.orderByChild("uid").equalTo("244802495");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             //
             @Override
@@ -112,23 +113,23 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
                 MStList.clear();
                 Mlist.clear();
                 for(final DataSnapshot data : dS.getChildren()) {
-                    Map mTmp = data.getValue(Map.class);
-                    if(mTmp.publicc){
-                      Mlist.add(mTmp);
-                      st = mTmp.getMapname();
-                      Query query = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
-                      query.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                userTmp=data.getValue(User.class);
-                                st2=userTmp.getName();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) { }
-                      });
-                      MStList.add(st+" by:"+st2);
-                    }
+                   // Map mTmp = data.getValue(Map.class);
+                   // if(mTmp.publicc){
+                   //   Mlist.add(mTmp);
+                    //  st = mTmp.getMapname();
+                    // Query query = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+                   //  query.addListenerForSingleValueEvent(new ValueEventListener() {
+                          //  @Override
+                          //  public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //    userTmp=data.getValue(User.class);
+                           //     st2=userTmp.getName();
+                      //  }
+                   // @Override
+                   //    public void onCancelled(@NonNull DatabaseError error) { }
+                  //});
+                    // MStList.add(st+" by:"+st2);
+                   // }
+                    data.getRef().removeValue();
                 }
                 adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
                 lvCP.setAdapter(adp);
@@ -136,5 +137,17 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
             @Override
             public void onCancelled(DatabaseError databaseError) { }
         });
-    }
-}
+    }*/
+        ValueEventListener GListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dS) {
+                dS.getRef().removeValue();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(ChoosingGuideMap.this, "Please insert map name and size", Toast.LENGTH_SHORT).show();
+            }
+        };
+        refMaps.addValueEventListener(GListener);
+}}
