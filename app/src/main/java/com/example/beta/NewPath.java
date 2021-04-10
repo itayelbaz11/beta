@@ -174,7 +174,7 @@ public class NewPath extends AppCompatActivity {
 
                 }
             });
-            
+
 
             ArrayList<Place> places=new ArrayList<Place>();
             newMap=new Map(mapId,pathName,id,path,places,publicc);

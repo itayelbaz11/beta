@@ -35,7 +35,6 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
     FirebaseUser user;
     EditText et;
     ImageView img;
-    User userTmp=new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +102,9 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
     }
 
     public void searchP(View view) {
-        /* String pathname;
+        String pathname;
         pathname=et.getText().toString();
-        Query query = refMaps.orderByChild("uid").equalTo("244802495");
+        Query query = refMaps.orderByChild("mapname").equalTo(pathname);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             //
             @Override
@@ -113,23 +112,22 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
                 MStList.clear();
                 Mlist.clear();
                 for(final DataSnapshot data : dS.getChildren()) {
-                   // Map mTmp = data.getValue(Map.class);
-                   // if(mTmp.publicc){
-                   //   Mlist.add(mTmp);
-                    //  st = mTmp.getMapname();
-                    // Query query = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
-                   //  query.addListenerForSingleValueEvent(new ValueEventListener() {
-                          //  @Override
-                          //  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //    userTmp=data.getValue(User.class);
-                           //     st2=userTmp.getName();
-                      //  }
-                   // @Override
-                   //    public void onCancelled(@NonNull DatabaseError error) { }
-                  //});
-                    // MStList.add(st+" by:"+st2);
-                   // }
-                    data.getRef().removeValue();
+                   Map mTmp = data.getValue(Map.class);
+                   if(mTmp.publicc){
+                      Mlist.add(mTmp);
+                      st = mTmp.getMapname();
+                      Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+                      query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                               User userTmp=snapshot.getValue(User.class);
+                               st2=userTmp.getName();
+                           }
+                           @Override
+                           public void onCancelled(@NonNull DatabaseError error) { }
+                       });
+                     MStList.add(st+" by:"+st2);
+                   }
                 }
                 adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
                 lvCP.setAdapter(adp);
@@ -137,17 +135,6 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
             @Override
             public void onCancelled(DatabaseError databaseError) { }
         });
-    }*/
-        ValueEventListener GListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dS) {
-                dS.getRef().removeValue();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+    }
 
-                Toast.makeText(ChoosingGuideMap.this, "Please insert map name and size", Toast.LENGTH_SHORT).show();
-            }
-        };
-        refMaps.addValueEventListener(GListener);
-}}
+}
