@@ -120,8 +120,10 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
                       query2.addListenerForSingleValueEvent(new ValueEventListener() {
                            @Override
                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                               User userTmp=snapshot.getValue(User.class);
-                               st2=userTmp.getName();
+                               for(final DataSnapshot d : snapshot.getChildren()) {
+                                   User albert = d.getValue(User.class);
+                                   st2 = albert.getName();
+                               }
                            }
                            @Override
                            public void onCancelled(@NonNull DatabaseError error) { }

@@ -7,7 +7,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     tools:context=".ChoosingGuideMap"
-    android:background="#3B4287">
+    android:background="#3B4287"
+    >
 
 
     <Space
