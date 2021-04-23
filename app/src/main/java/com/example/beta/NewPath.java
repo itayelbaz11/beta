@@ -177,8 +177,17 @@ public class NewPath extends AppCompatActivity {
 
 
             ArrayList<Place> places=new ArrayList<Place>();
+            Place tmpP=new Place(-1,-1,"tmp","p","d");
+            places.add(tmpP);
             newMap=new Map(mapId,pathName,id,path,places,publicc);
             refMaps.child(mapId).setValue(newMap);
+            Intent si = new Intent(NewPath.this,AddingPlace.class);
+            si.putExtra("mapId",mapId);
+            si.putExtra("x",xy/2);
+            si.putExtra("y",xy/2);
+            si.putExtra("firstTime",true);
+            startActivity(si);
+
         }
         else{
             Toast.makeText(NewPath.this, "Please insert map name and size", Toast.LENGTH_SHORT).show();
@@ -201,4 +210,5 @@ public class NewPath extends AppCompatActivity {
         sCB.setChecked(false);
         mCB.setChecked(false);
     }
+
 }
