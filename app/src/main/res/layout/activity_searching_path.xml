@@ -50,16 +50,16 @@
 
 
             <EditText
-                android:id="@+id/emailR"
+                android:id="@+id/pathnameET"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
                 android:background="#E3E5FA"
                 android:ems="10"
+                android:hint="  write path name"
                 android:inputType="textPersonName" />
 
             <ImageView
-                android:id="@+id/imageView6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"

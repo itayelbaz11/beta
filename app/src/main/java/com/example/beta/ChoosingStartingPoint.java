@@ -73,8 +73,9 @@ public class ChoosingStartingPoint extends AppCompatActivity implements AdapterV
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent si = new Intent(ChoosingStartingPoint.this,CreatingPath.class);
-        si.putExtra("map",mapid);
-        si.putExtra("starting",Plist.get(position).name);
+        si.putExtra("mapId",mapid);
+        si.putExtra("x",Plist.get(position).getX());
+        si.putExtra("y",Plist.get(position).getY());
         startActivity(si);
 
     }

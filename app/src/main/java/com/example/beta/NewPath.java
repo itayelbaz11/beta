@@ -54,7 +54,6 @@ public class NewPath extends AppCompatActivity {
     Bitmap bPath;
     public Uri imguri;
     StorageReference mstorageRef;
-    String path="hello";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,8 +140,7 @@ public class NewPath extends AppCompatActivity {
                 }
             }
 
-            bPath=createImage(xy,xy, Color.BLUE);
-
+            bPath=createImage(xy,xy,Color.rgb(1,60,160));
             /**
              * references for the storage
              */
@@ -179,7 +177,7 @@ public class NewPath extends AppCompatActivity {
             ArrayList<Place> places=new ArrayList<Place>();
             Place tmpP=new Place(-1,-1,"tmp","p","d");
             places.add(tmpP);
-            newMap=new Map(mapId,pathName,id,path,places,publicc);
+            newMap=new Map(mapId,pathName,id,places,publicc);
             refMaps.child(mapId).setValue(newMap);
             Intent si = new Intent(NewPath.this,AddingPlace.class);
             si.putExtra("mapId",mapId);

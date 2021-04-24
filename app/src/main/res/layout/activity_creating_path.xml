@@ -45,7 +45,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/mapIV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"
@@ -69,7 +69,6 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -77,6 +76,21 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="startWalking"
                 android:text="start walking"
+                android:textSize="14sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="#9AA0DC"
+                android:fontFamily="@font/faster_one"
+                android:onClick="cancel"
+                android:text="cancel"
                 android:textSize="20sp" />
 
             <Space
