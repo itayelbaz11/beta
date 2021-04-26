@@ -28,7 +28,6 @@
 
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="12"
@@ -51,7 +50,7 @@
 
 
             <EditText
-                android:id="@+id/search2"
+                android:id="@+id/startingET"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
@@ -131,7 +130,7 @@
 
 
             <EditText
-                android:id="@+id/emailR"
+                android:id="@+id/endingET"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
@@ -181,6 +180,22 @@
             android:textSize="20sp"
             android:onClick="infoEnd"/>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="10"
+            android:background="#9AA0DC"
+            android:fontFamily="@font/faster_one"
+            android:onClick="cancelsearches"
+            android:text="    Cancel Searches    "
+            android:textSize="20sp" />
+
 
         <Space
             android:layout_width="match_parent"
@@ -198,6 +213,8 @@
             android:text="    Start Navigating    "
             android:textSize="20sp"
             android:onClick="startNavigating"/>
+
+
 
         <Space
             android:layout_width="match_parent"
