@@ -1,31 +1,54 @@
 package com.example.beta;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static com.example.beta.FBref.refMaps;
+import static com.example.beta.FBref.refStor;
 
 public class StartingAndEnding extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     EditText startingET,endingET;
     ListView lvSt,lvEd;
+
+    TextView xDlg,yDlg,NameDlg;
+    ImageView iV;
+
     String st1,st2,mapid,StartName,EndName;
     Map map;
+
+
     ArrayList<Place> Plist=new ArrayList<Place>();
     ArrayList<String> PStList=new ArrayList<String>();
     ArrayList<Place> tmpPlist1=new ArrayList<Place>();
@@ -33,9 +56,13 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
     ArrayList<Place> tmpPlist2=new ArrayList<Place>();
     ArrayList<String> tmpPStList2=new ArrayList<String>();
     ArrayAdapter adp,adp2;
+
+
     boolean isSearch1,isSearch2,ready1,ready2;
-    int startingX,startingY,endingX,endingY;
+
+
     View view1,view2;
+    Place tmpP1,tmpP2;
 
 
 
@@ -54,6 +81,7 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         lvEd = (ListView) findViewById(R.id.endingPoints);
         lvEd.setOnItemClickListener(this);
         lvEd.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
 
         Intent gi=getIntent();
         mapid=gi.getStringExtra("map");
@@ -100,7 +128,18 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         isSearch1=true;
     }
 
-    public void infoStart(View view) {
+    public void infoStart(View view){
+        if(ready1){
+            Intent si = new Intent(StartingAndEnding.this,placeInfoShowing.class);
+            si.putExtra("placeName",tmpP1.getName());
+            si.putExtra("placePhoto",tmpP1.getPhoto());
+            si.putExtra("placeX",tmpP1.getX());
+            si.putExtra("placeY",tmpP1.getY());
+            startActivity(si);
+        }
+        else {
+            Toast.makeText(StartingAndEnding.this, "Please choose an option", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void searchEnd(View view) {
@@ -117,6 +156,17 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
     }
 
     public void infoEnd(View view) {
+        if(ready2){
+            Intent si = new Intent(StartingAndEnding.this,placeInfoShowing.class);
+            si.putExtra("placeName",tmpP2.getName());
+            si.putExtra("placePhoto",tmpP2.getPhoto());
+            si.putExtra("placeX",tmpP2.getX());
+            si.putExtra("placeY",tmpP2.getY());
+            startActivity(si);
+        }
+        else {
+            Toast.makeText(StartingAndEnding.this, "Please choose an option", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void startNavigating(View view) {
@@ -125,37 +175,24 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
             view.setBackgroundColor(Color.RED);
-            switch(view.getId()) {
-                case R.id.startingET:
-                    if(isSearch1){
-                         StartName=tmpPStList1.get(position);
-                         startingX=tmpPlist1.get(position).getX();
-                         startingY=tmpPlist1.get(position).getY();
-                    }
-                    else{
-                        StartName=PStList.get(position);
-                        startingX=Plist.get(position).getX();
-                        startingY=Plist.get(position).getY();
-                    }
-                    view1=view;
-                    ready1=true;
-                    break;
-
-                case R.id.endingET:
+            if(adapterView==lvSt) {
+                if (isSearch1) {
+                    tmpP1 = tmpPlist1.get(position);
+                } else {
+                    tmpP1 = Plist.get(position);
+                }
+                view1 = view;
+                ready1 = true;
+            }
+            else{
                     if(isSearch2){
-                        StartName=tmpPStList2.get(position);
-                        startingX=tmpPlist2.get(position).getX();
-                        startingY=tmpPlist2.get(position).getY();
+                        tmpP2=tmpPlist2.get(position);
                     }
                     else{
-                        StartName=PStList.get(position);
-                        startingX=Plist.get(position).getX();
-                        startingY=Plist.get(position).getY();
+                        tmpP2=Plist.get(position);
                     }
                     view2=view;
                     ready2=true;
-                    break;
-
             }
 
     }
