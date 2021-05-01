@@ -135,6 +135,7 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
             si.putExtra("placePhoto",tmpP1.getPhoto());
             si.putExtra("placeX",tmpP1.getX());
             si.putExtra("placeY",tmpP1.getY());
+            si.putExtra("placeD",tmpP1.getDescription());
             startActivity(si);
         }
         else {
@@ -162,6 +163,7 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
             si.putExtra("placePhoto",tmpP2.getPhoto());
             si.putExtra("placeX",tmpP2.getX());
             si.putExtra("placeY",tmpP2.getY());
+            si.putExtra("placeD",tmpP2.getDescription());
             startActivity(si);
         }
         else {
