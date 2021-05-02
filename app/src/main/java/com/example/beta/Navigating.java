@@ -7,6 +7,8 @@ import android.view.View;
 
 public class Navigating extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,5 +16,8 @@ public class Navigating extends AppCompatActivity {
     }
 
     public void startW(View view) {
+    }
+
+    public void stopW(View view) {
     }
 }

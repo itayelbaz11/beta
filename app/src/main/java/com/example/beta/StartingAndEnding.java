@@ -42,9 +42,6 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
     EditText startingET,endingET;
     ListView lvSt,lvEd;
 
-    TextView xDlg,yDlg,NameDlg;
-    ImageView iV;
-
     String st1,st2,mapid,StartName,EndName;
     Map map;
 
@@ -172,6 +169,16 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
     }
 
     public void startNavigating(View view) {
+        if(ready1&&ready2){
+            Intent si = new Intent(StartingAndEnding.this,Navigating.class);
+            si.putExtra("mapId",mapid);
+            si.putExtra("placeXstart",tmpP1.getX());
+            si.putExtra("placeYstart",tmpP1.getY());
+            si.putExtra("placeXend",tmpP2.getX());
+            si.putExtra("placeYend",tmpP2.getY());
+            si.putExtra("placeNamestart",tmpP1.getName());
+            startActivity(si);
+        }
     }
 
     @Override

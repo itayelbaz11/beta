@@ -130,7 +130,6 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -138,6 +137,21 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="startW"
                 android:text="start walking"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="#9AA0DC"
+                android:fontFamily="@font/faster_one"
+                android:onClick="stopW"
+                android:text="pause"
                 android:textSize="20sp" />
 
             <Space
