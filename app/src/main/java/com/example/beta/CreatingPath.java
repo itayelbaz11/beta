@@ -68,24 +68,6 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         yS = gi.getIntExtra("y", -1);
         mapId = gi.getStringExtra("mapId");
 
-        StorageReference refImages=refStor.child(mapId+".jpg");
-        final long MAX_SIZE = 1024*1024;
-        refImages.getBytes(MAX_SIZE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                savedmap= BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                mapIV.setImageBitmap(bMap);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
-
-
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(CreatingPath.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
@@ -104,6 +86,25 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         else{
             isCounterSensorPresent=false;
         }
+
+        StorageReference refImages=refStor.child(mapId+".jpg");
+        final long MAX_SIZE = 1024*1024;
+        refImages.getBytes(MAX_SIZE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                savedmap= BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                mapIV.setImageBitmap(bMap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
+
+
 
     }
 

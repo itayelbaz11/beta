@@ -177,6 +177,7 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
             si.putExtra("placeXend",tmpP2.getX());
             si.putExtra("placeYend",tmpP2.getY());
             si.putExtra("placeNamestart",tmpP1.getName());
+            si.putExtra("placeNameEnd",tmpP2.getName());
             startActivity(si);
         }
     }

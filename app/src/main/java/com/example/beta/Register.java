@@ -75,10 +75,6 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         pd.dismiss();
                         if (task.isSuccessful()) {
-                            //SharedPreferences settings=getSharedPreferences("PREFS_NAME",MODE_PRIVATE);
-                            //SharedPreferences.Editor editor=settings.edit();
-                           // editor.putBoolean("stayConnect",cBstayconnect.isChecked());
-                           // editor.commit();
                             Log.d("MainActivity", "createUserWithEmail:success");
                             FirebaseUser user = refAuth.getCurrentUser();
                             uid = user.getUid();
@@ -88,7 +84,7 @@ public class Register extends AppCompatActivity {
                             Intent si = new Intent(Register.this,Login.class);
                             si.putExtra("newuser",true);
                             startActivity(si);
-                        } else {
+                          } else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException)
                                 Toast.makeText(Register.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
                             else {
