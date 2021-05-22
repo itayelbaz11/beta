@@ -173,11 +173,13 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                         }
                         else if (rotation > 337.5 || rotation < 22.5) {
                             for (int i = 0; i < 3; i++) {
-                                if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
-                                yS--;
-                                bMap.setPixel(xS, yS, Color.WHITE);}
+                                if (dontexceed(xS, yS, bMap.getWidth(), bMap.getHeight())) {
+                                    yS--;
+                                    bMap.setPixel(xS, yS, Color.WHITE);
+                                }
                             }
                         }
+                        mapIV.setImageBitmap(bMap);
                     }
                 }
             }}
@@ -218,9 +220,6 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
 
     public void startWalking(View view) {
         startwalkingtrue=true;
-        while(startwalkingtrue){
-            mapIV.setImageBitmap(bMap);
-        }
     }
 
     public void cancel(View view) {
