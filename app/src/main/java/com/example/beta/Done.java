@@ -19,7 +19,7 @@ import static com.example.beta.FBref.refMaps;
 public class Done extends AppCompatActivity {
 
    String placeName,placeD,placePhoto;
-
+   int x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +29,18 @@ public class Done extends AppCompatActivity {
         placeName=gi.getStringExtra("placeName");
         placeD=gi.getStringExtra("placeD");
         placePhoto=gi.getStringExtra("placePhoto");
+        x=gi.getIntExtra("placeX",-1);
+        x=gi.getIntExtra("placeY",-1);
 
     }
 
     public void info(View view) {
-        Intent si = new Intent(Done.this,PlaceInfo.class);
+        Intent si = new Intent(Done.this,placeInfoShowing.class);
         si.putExtra("placeName",placeName);
         si.putExtra("placePhoto",placePhoto);
         si.putExtra("placeD",placeD);
+        si.putExtra("placeX",x);
+        si.putExtra("placeY",y);
         startActivity(si);
     }
 

@@ -422,6 +422,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                 si.putExtra("placeName",nameEnd);
                 si.putExtra("placePhoto",endPhoto);
                 si.putExtra("placeD",endD);
+                si.putExtra("placeX",xEnd);
+                si.putExtra("placeY",yEnd);
                 startActivity(si);
             }
            }
