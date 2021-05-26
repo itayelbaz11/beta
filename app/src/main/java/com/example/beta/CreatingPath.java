@@ -1,9 +1,11 @@
 package com.example.beta;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -54,7 +57,10 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
     Bitmap bMap,savedmap;
 
     boolean startwalkingtrue=false;
+    boolean usersPermission=false;
     int steps=0;
+
+    AlertDialog.Builder adb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +128,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS++;
                                 yS--;
+                                Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -130,6 +137,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS++;
                                 yS++;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -138,6 +146,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS--;
                                 yS++;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -146,6 +155,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS--;
                                 yS--;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -153,6 +163,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                             for (int i = 0; i < 3; i++) {
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS++;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -161,6 +172,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                             for (int i = 0; i < 3; i++) {
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 yS++;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -168,6 +180,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                             for (int i = 0; i < 3; i++) {
                                 if(dontexceed(xS,yS,bMap.getWidth(),bMap.getHeight())){
                                 xS--;
+                                    Log.d("hello", rotation+"");
                                 bMap.setPixel(xS, yS, Color.WHITE);}
                             }
                         }
@@ -175,6 +188,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
                             for (int i = 0; i < 3; i++) {
                                 if (dontexceed(xS, yS, bMap.getWidth(), bMap.getHeight())) {
                                     yS--;
+                                    Log.d("hello", rotation+"");
                                     bMap.setPixel(xS, yS, Color.WHITE);
                                 }
                             }
@@ -219,7 +233,30 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
     }
 
     public void startWalking(View view) {
-        startwalkingtrue=true;
+        if(usersPermission){
+            startwalkingtrue=true;
+        }
+        else{
+            adb=new AlertDialog.Builder(this);
+            adb.setTitle("Users Permission");
+            adb.setMessage("The app is about to track your walking, do you agree?");
+            adb.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    usersPermission=true;
+                    startwalkingtrue=true;
+                    dialogInterface.cancel();
+                }
+            });
+            adb.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog ad=adb.create();
+            ad.show();
+        }
     }
 
     public void cancel(View view) {
