@@ -17,22 +17,40 @@ public class choosing extends AppCompatActivity {
         setContentView(R.layout.activity_choosing);
     }
 
+    /**
+     * This method sends the user to the ChoosingGudieMap activity when the guiding icon is clicked
+     * @param view
+     */
     public void guider(View view) {
         Intent si = new Intent(choosing.this,ChoosingGuideMap.class);
         startActivity(si);
     }
 
+    /**
+     * Ths method sends the user to SerachingPath activity when the navigation icon is clicked
+     * @param view
+     */
     public void navigator(View view) {
         Intent si = new Intent(choosing.this,SearchingPath.class);
         startActivity(si);
     }
 
+    /**
+     * this method creates the menu
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+    /**
+     * This method sends to the chosen activity in the menu
+     * @param item
+     * @return
+     */
     public boolean onOptionsItemSelected (MenuItem item) {
         int id=item.getItemId();
         if (id==R.id.choosingI) {

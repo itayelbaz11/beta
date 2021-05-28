@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="what are you? "
             android:textColor="#E3E5FA"
-            android:textSize="40sp" />
+            android:autoSizeTextType="uniform"/>
 
 
         <Space
@@ -79,7 +79,9 @@
                     android:gravity="center"
                     android:text="Guider"
                     android:textColor="#E3E5FA"
-                    android:textSize="20sp" />
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="40sp"
+                    android:autoSizeTextType="uniform" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -115,7 +117,9 @@
                     android:gravity="center"
                     android:text="Navigator"
                     android:textColor="#E3E5FA"
-                    android:textSize="20sp" />
+                    android:autoSizeMinTextSize="6sp"
+                    android:autoSizeMaxTextSize="35sp"
+                    android:autoSizeTextType="uniform" />
 
                 <Space
                     android:layout_width="match_parent"

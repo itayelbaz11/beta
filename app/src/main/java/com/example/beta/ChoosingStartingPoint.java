@@ -43,6 +43,10 @@ public class ChoosingStartingPoint extends AppCompatActivity implements AdapterV
         Intent gi=getIntent();
         mapid=gi.getStringExtra("map");
 
+        /**
+         * showing all of the places in the specific map that was chosen in the previous activity
+         */
+
         Query query = refMaps.orderByChild("uid").equalTo(mapid);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             //
@@ -70,6 +74,14 @@ public class ChoosingStartingPoint extends AppCompatActivity implements AdapterV
 
     }
 
+    /**
+     * This is activated when an item in the list view is clicked,
+     * it sends the user to the next activity with the place's coordination (that was chosen)
+     * @param adapterView
+     * @param view
+     * @param position
+     * @param l
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent si = new Intent(ChoosingStartingPoint.this,CreatingPath.class);

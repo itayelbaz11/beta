@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,12 +55,22 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
 
 }
 
+ /**
+  * This method sends the user to the newpath activity when the button is clicked
+  */
     public void newPath(View view) {
         Intent si = new Intent(ChoosingGuideMap.this,NewPath.class);
         startActivity(si);
 
     }
 
+    /**
+     * This method is started when selecting a list view item, it sends the user to the next activity and sends the chosen map
+     * @param adapterView
+     * @param view
+     * @param position
+     * @param l
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent si = new Intent(ChoosingGuideMap.this,ChoosingStartingPoint.class);
@@ -70,6 +79,10 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
 
     }
 
+    /**
+     * this method shows only the maps that the user created in the list view above.
+     * @param view
+     */
     public void myPaths(View view) {
         et.setVisibility(View.INVISIBLE);
         img.setVisibility(View.INVISIBLE);
@@ -95,12 +108,21 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
 
     }
 
+    /**
+     * This method changes the activity's view to public paths searching view
+     * @param view
+     */
     public void publicPaths(View view) {
         et.setVisibility(View.VISIBLE);
         img.setVisibility(View.VISIBLE);
 
     }
 
+    /**
+     * this method shows public maps with the map name that was searched in the list view above,
+     * it is activated when the serching button is clicked
+     * @param view
+     */
     public void searchP(View view) {
         String pathname;
         pathname=et.getText().toString();

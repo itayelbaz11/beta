@@ -1,7 +1,6 @@
 package com.example.beta;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
@@ -14,7 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,8 +33,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.example.beta.FBref.ImageImagesRef;
-import static com.example.beta.FBref.refImages;
 import static com.example.beta.FBref.refMaps;
 import static com.example.beta.FBref.refStor;
 

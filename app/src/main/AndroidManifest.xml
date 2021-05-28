@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.beta">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,22 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".placeInfoShowing"></activity>
-        <activity android:name=".Done" />
-        <activity android:name=".Navigating" />
-        <activity android:name=".PlaceInfo" />
-        <activity android:name=".StartingAndEnding" />
-        <activity android:name=".SearchingPath" />
-        <activity android:name=".NewPath" />
-        <activity android:name=".AddingPlace" />
-        <activity android:name=".CreatingPath" />
-        <activity android:name=".ChoosingStartingPoint" />
-        <activity android:name=".ChoosingGuideMap" />
-        <activity android:name=".choosing" />
-        <activity android:name=".Login" />
-        <activity android:name=".Register" />
-        <activity android:name=".credits" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.beta.placeInfoShowing"></activity>
+        <activity android:name="com.example.beta.Done" />
+        <activity android:name="com.example.beta.Navigating" />
+        <activity android:name="com.example.beta.PlaceInfo" />
+        <activity android:name="com.example.beta.StartingAndEnding" />
+        <activity android:name="com.example.beta.SearchingPath" />
+        <activity android:name="com.example.beta.NewPath" />
+        <activity android:name="com.example.beta.AddingPlace" />
+        <activity android:name="com.example.beta.CreatingPath" />
+        <activity android:name="com.example.beta.ChoosingStartingPoint" />
+        <activity android:name="com.example.beta.ChoosingGuideMap" />
+        <activity android:name="com.example.beta.choosing" />
+        <activity android:name="com.example.beta.Login" />
+        <activity android:name="com.example.beta.Register" />
+        <activity android:name="com.example.beta.credits" />
+        <activity android:name="com.example.beta.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

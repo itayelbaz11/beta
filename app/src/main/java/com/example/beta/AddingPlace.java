@@ -25,7 +25,6 @@ import com.google.firebase.storage.UploadTask;
 
 import static com.example.beta.FBref.refMaps;
 import static com.example.beta.FBref.refStor;
-import static com.example.beta.FBref.refUsers;
 
 public class AddingPlace extends AppCompatActivity {
 
@@ -57,12 +56,13 @@ public class AddingPlace extends AppCompatActivity {
         firstTime=gi.getBooleanExtra("firstTime",true);
     }
 
-    private String getExtension(Uri uri){
-        ContentResolver cr=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
-    }
-
+    /**
+     * This method import the image from the device's gallery
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -88,6 +88,12 @@ public class AddingPlace extends AppCompatActivity {
     }
 
 
+    /**
+     * This method add a new Place object to the Map's places arraylist,
+     * and it uploads the chosen image to the Firebase Storage
+     * if its the first time (the previous activity was the NewPath activity, the app deletes the extra place (-1,-1)
+     * @param view
+     */
     public void createPlace(View view) {
         pName=nET.getText().toString();
         pDescription=dET.getText().toString();
@@ -136,8 +142,6 @@ public class AddingPlace extends AppCompatActivity {
         });
 
     }
-
-
 
 
 
