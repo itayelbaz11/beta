@@ -148,7 +148,7 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
     /**
      * This method is activated when a sensor is changed
      * if its the step counter- the app will document the walking paths in the maps bitmap
-     * if its the magnetic field sensor or its the accelerometer thier values will be saved and the combination of these two will determine the phones rotation.
+     * if its the magnetic field sensor or its the accelerometer their values will be saved and the combination of these two will determine the phones rotation.
      */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
