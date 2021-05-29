@@ -1,9 +1,12 @@
 package com.example.beta;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,7 +44,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
 
     ImageView ivMap;
-    TextView tvSteps,tvDirection;
+    TextView tvSteps,tvDirection,tvCurrentDirection;
 
     String mapId,nameStart,nameEnd,endPhoto,endD;
     int xStart,yStart,xEnd,yEnd;
@@ -54,6 +57,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     Stack<Vector> pathV;
 
     boolean stepsB=false;
+    boolean downladed=false;
+    boolean usersPermission=false;
 
     private SensorManager sensorManager;
     Sensor accelerometer;
@@ -71,6 +76,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     boolean isWalking=false;
     Vector tmpV;
 
+    AlertDialog.Builder adb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         ivMap=(ImageView) findViewById(R.id.ivMapN);
         tvSteps=(TextView) findViewById(R.id.tvStepsN);
         tvDirection=(TextView) findViewById(R.id.tvDirectionN);
+        tvCurrentDirection=(TextView) findViewById(R.id.tvCurrentDirectionN);
 
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -112,9 +119,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         endPhoto=gi.getStringExtra("placePhoto");
 
 
-
+        final ProgressDialog pd=ProgressDialog.show(this,"PIC","Downloading map and creating instructions.... ",true);
         StorageReference refImages=refStor.child(mapId+".jpg");
-        final long MAX_SIZE = 1024*1024;
+        final long MAX_SIZE = 2500*2500;
         refImages.getBytes(MAX_SIZE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
@@ -130,12 +137,12 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                         wall=false;
                     }
                 }
-
                 start=grid[xStart][yStart];
                 end=grid[xEnd][yEnd];
 
-                Spath=pathFinding(start,end,grid);
-                pathV=vectorPath(Spath);
+
+                downladed=true;
+                pd.dismiss();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -153,11 +160,39 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     }
 
     public void startW(View view) {
-        isWalking=true;
+        if(usersPermission){
+            isWalking=true;
+        }
+        else{
+            adb=new AlertDialog.Builder(this);
+            adb.setTitle("Users Permission");
+            adb.setMessage("The app is about to track your walking, do you agree?");
+            adb.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    usersPermission=true;
+                    isWalking=true;
+                    dialogInterface.cancel();
+                }
+            });
+            adb.setNegativeButton("no", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog ad=adb.create();
+            ad.show();
+        }
     }
 
     public void stopW(View view) {
-        isWalking=false;
+        final ProgressDialog pd=ProgressDialog.show(this,"PIC","working... ",true);
+        Spath=pathFinding(start,end,grid);
+        pathV=vectorPath(Spath);
+        pd.dismiss();
+       // isWalking=false;
+       // usersPermission=false;
     }
 
     public Stack<Spot> pathFinding(Spot start, Spot end, Spot[][] grid){
@@ -170,6 +205,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
         openSet.add(start);
         while(keepgoing){
+            winner=0;
             if(!openSet.isEmpty()){
                 for(int x=0;x<openSet.size();x++){
                     if(openSet.get(x).getF()<openSet.get(winner).getF()){
@@ -192,6 +228,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                 openSet.remove(current);
                 closedSet.add(current);
 
+                current.addNeighbors(grid);
                 ArrayList<Spot> neighbors=current.neighbors;
 
                 for(int i3=0;i3<neighbors.size();i3++){
@@ -376,63 +413,80 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         return  direction;
     }
 
+    public String directionName(int x){
+        switch (x){
+            case 0: return "N";
+            case 1:return "NE";
+            case 2:return "E";
+            case 3: return "SE";
+            case 4: return "S";
+            case 5:return "SW";
+            case 6: return "W";
+            case 7: return "NW";
+            default: return "Error";
+        }
+    }
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-            mGravity = sensorEvent.values;
+        if(downladed) {
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+                mGravity = sensorEvent.values;
 
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
-            mGeomagnetic = sensorEvent.values;
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+                mGeomagnetic = sensorEvent.values;
 
-        if (mGravity != null && mGeomagnetic != null) {
-            float R[] = new float[9];
-            float I[] = new float[9];
+            if (mGravity != null && mGeomagnetic != null) {
+                float R[] = new float[9];
+                float I[] = new float[9];
 
-            if (SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic)) {
+                if (SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic)) {
 
-                // orientation contains azimut, pitch and roll
-                float orientation[] = new float[3];
-                SensorManager.getOrientation(R, orientation);
+                    // orientation contains azimut, pitch and roll
+                    float orientation[] = new float[3];
+                    SensorManager.getOrientation(R, orientation);
 
-                azimuth = orientation[0];
-                rotation = (float) (( Math.toDegrees( azimuth ) + 360 ) % 360);
-            }
-        }
-        if(sensorEvent.sensor==mStepCounter){
-            if(isWalking){
-              if(!pathV.isEmpty()){
-                tmpV=pathV.peek();
-                if(tmpV.steps==0){
-                    pathV.pop();
+                    azimuth = orientation[0];
+                    rotation = (float) ((Math.toDegrees(azimuth) + 360) % 360);
                 }
-                if(!pathV.isEmpty()){
-                    tmpV=pathV.peek();
-                    tvSteps.setText(tmpV.steps);
-                    tvDirection.setText(tmpV.direction);
-                    int direction=directionGet(rotation);
-                    if(direction==tmpV.direction){
-                        pathV.peek().steps--;
-                    }
-                    else{
-                        if(direction==(tmpV.direction+4)%8){
-                            tmpV.steps++;
-                        }
-                        else{
-                            pathV.push(new Vector((direction+4)%8,1));
+            }
+
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                if (sensorEvent.sensor == mStepCounter) {
+                    if (isWalking) {
+                        if (!pathV.isEmpty()) {
+                            tmpV = pathV.peek();
+                            if (tmpV.steps == 0) {
+                                pathV.pop();
+                            }
+                            if (!pathV.isEmpty()) {
+                                tmpV = pathV.peek();
+                                tvSteps.setText("Steps:"+tmpV.steps);
+                                tvDirection.setText("Direction:"+directionName(tmpV.direction));
+                                int direction = directionGet(rotation);
+                                tvCurrentDirection.setText("Current Direction:"+directionName(direction));
+                                if (direction == tmpV.direction) {
+                                    pathV.peek().steps--;
+                                } else {
+                                    if (direction == (tmpV.direction + 4) % 8) {
+                                        tmpV.steps++;
+                                    } else {
+                                        pathV.push(new Vector((direction + 4) % 8, 1));
+                                    }
+                                }
+                            }
+                        } else {
+                            Intent si = new Intent(Navigating.this, Done.class);
+                            si.putExtra("placeName", nameEnd);
+                            si.putExtra("placePhoto", endPhoto);
+                            si.putExtra("placeD", endD);
+                            si.putExtra("placeX", xEnd);
+                            si.putExtra("placeY", yEnd);
+                            startActivity(si);
                         }
                     }
                 }
-               }
-              else{
-                Intent si = new Intent(Navigating.this,Done.class);
-                si.putExtra("placeName",nameEnd);
-                si.putExtra("placePhoto",endPhoto);
-                si.putExtra("placeD",endD);
-                si.putExtra("placeX",xEnd);
-                si.putExtra("placeY",yEnd);
-                startActivity(si);
             }
-           }
         }
     }
 

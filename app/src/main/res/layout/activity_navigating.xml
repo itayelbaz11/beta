@@ -31,7 +31,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="15"
             android:fontFamily="@font/faster_one"
             android:gravity="center"
             android:text="Follow The Instructions"
@@ -70,17 +70,9 @@
                 android:gravity="center_vertical"
                 android:text="Steps:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:id="@+id/tvStepsN"/>
 
-            <TextView
-                android:id="@+id/tvStepsN"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:fontFamily="@font/faster_one"
-                android:gravity="center_vertical"
-                android:textColor="#E3E5FA"
-                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,17 +89,29 @@
                 android:gravity="center_vertical"
                 android:text="Direction:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:id="@+id/tvDirectionN"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="horizontal"
+            tools:ignore="ExtraText">
 
             <TextView
-                android:id="@+id/tvDirectionN"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:fontFamily="@font/faster_one"
                 android:gravity="center_vertical"
+                android:text="Current Direction:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:id="@+id/tvCurrentDirectionN"/>
+
         </LinearLayout>
 
         <Space
