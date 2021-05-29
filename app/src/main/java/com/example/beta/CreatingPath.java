@@ -74,6 +74,9 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         yS = gi.getIntExtra("y", -1);
         mapId = gi.getStringExtra("mapId");
 
+        /**
+         * Setting the sensors attributes
+         */
 
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -110,7 +113,9 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
          Log.d("Debug","Exception:"+ ex.toString());
         }
 
-
+        /**
+         * Downloading the map's image from the storage
+         */
         final ProgressDialog pd=ProgressDialog.show(this,"PIC","Downloading map.... ",true);
         StorageReference refImages=refStor.child(mapId+".jpg");
         final long MAX_SIZE = 2500*2500;
@@ -140,6 +145,11 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
 
     }
 
+    /**
+     * This method is activated when a sensor is changed
+     * if its the step counter- the app will document the walking paths in the maps bitmap
+     * if its the magnetic field sensor or its the accelerometer thier values will be saved and the combination of these two will determine the phones rotation.
+     */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if (downladpic) {
@@ -249,6 +259,10 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         return false;
     }
 
+    /**
+     * This method askes the users permission to track his walking and if he agrees it lets the sensors to start working
+     * @param view
+     */
     public void startWalking(View view) {
         if(usersPermission){
             startwalkingtrue=true;
@@ -276,6 +290,10 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * This method cancel the changes that was done in this walking session by returning back the previous map image and canceling the sensors permission to work
+     * @param view
+     */
     public void cancel(View view) {
         startwalkingtrue=false;
         usersPermission=false;
@@ -283,6 +301,10 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         mapIV.setImageBitmap(bMap);
     }
 
+    /**
+     * This method is activated when the pin button is clicked, it saves the new path that was created on the Storage online and deletes the previous version,
+     * then it sends the user to insert the place's name description and photo in the adding place activity
+     */
     public void pin(View view) {
         if(startwalkingtrue) {
             StorageReference refImages = refStor.child(mapId + ".jpg");
@@ -320,6 +342,9 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         }
     }
 
+    /**
+     * While the activity is running this method registers the step counter
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -330,6 +355,9 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
 
     }
 
+    /**
+     * When the activity is paused this method unregisters the step counter
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -338,14 +366,5 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
         }
     }
 
-
-    public static Bitmap createImage(int width, int height, int color) {
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
-        paint.setColor(color);
-        canvas.drawRect(0F, 0F, (float) width, (float) height, paint);
-        return bitmap;
-    }
 
 }

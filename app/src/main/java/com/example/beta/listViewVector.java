@@ -36,10 +36,21 @@ public class listViewVector extends AppCompatActivity implements AdapterView.OnI
         lv.setAdapter(adp);
     }
 
+    /**
+     * This method sends the user back to the activity he came from
+     * @param view
+     */
     public void backV(View view) {
         finish();
     }
 
+    /**
+     * When a list view item is clicked, the item turns red- in order to say that it was done
+     * @param parent
+     * @param view
+     * @param position
+     * @param id
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         view.setBackgroundColor(Color.RED);

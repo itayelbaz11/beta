@@ -88,6 +88,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         tvDirection=(TextView) findViewById(R.id.tvDirectionN);
         tvCurrentDirection=(TextView) findViewById(R.id.tvCurrentDirectionN);
 
+        /**
+         * Setting the sensors attributes
+         */
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(Navigating.this,accelerometer,SensorManager.SENSOR_DELAY_FASTEST);
@@ -107,6 +110,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
             isCounterSensorPresent=false;
         }
 
+        /**
+         * Getting the information on the places were navigating between
+         */
         Intent gi=getIntent();
         mapId=gi.getStringExtra("mapId");
         nameStart=gi.getStringExtra("placeNamestart");
@@ -118,7 +124,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         endD=gi.getStringExtra("placeD");
         endPhoto=gi.getStringExtra("placePhoto");
 
-
+        /**
+         * Downloading the map's image from the storage
+         */
         final ProgressDialog pd=ProgressDialog.show(this,"PIC","Downloading map and creating instructions.... ",true);
         StorageReference refImages=refStor.child(mapId+".jpg");
         final long MAX_SIZE = 2500*2500;
@@ -127,6 +135,10 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
             public void onSuccess(byte[] bytes) {
                 bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 ivMap.setImageBitmap(bMap);
+
+                /**
+                 * setting the matrix's grid, and creating the walking instructions
+                 */
                 grid=new Spot[bMap.getWidth()][bMap.getHeight()];
                 for(int i=0;i<bMap.getWidth();i++){
                     for(int j=0;j<bMap.getHeight();j++){
@@ -159,6 +171,10 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
     }
 
+    /**
+     * This method askes the users permission to track his walking and if he agrees it lets the sensors to start working
+     * @param view
+     */
     public void startW(View view) {
         if(usersPermission){
             isWalking=true;
@@ -190,11 +206,22 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         }
     }
 
+    /**
+     * This method pauses the walking instructions by canceling the Sensors "permission" to work
+     * @param view
+     */
     public void stopW(View view) {
         isWalking=false;
         usersPermission=false;
     }
 
+    /**
+     * This method is my implementation of A-Star Algorithm- an algorithm that finds the shortest path between to dots on a map
+     * @param start the starting spot
+     * @param end the ending spot
+     * @param grid the map in a grid
+     * @return
+     */
     public Stack<Spot> pathFinding(Spot start, Spot end, Spot[][] grid){
         Stack<Spot> path=new Stack<Spot>();
         ArrayList<Spot> openSet=new ArrayList<Spot>();
@@ -271,10 +298,21 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         return path;
     }
 
+    /**
+     * This method returns the distance between two dots on a graph/map.-נוסחת מרחק קצר ביותר
+     * @param n
+     * @param end
+     * @return
+     */
     public double heuristic(Spot n,Spot end){
         return Math.sqrt(Math.pow((n.i-end.i),2)+Math.pow((n.j-end.j),2));
     }
 
+    /**
+     * This method get a Spots path list and return a list of instructions (Vectors).
+     * @param path
+     * @return
+     */
     public Stack<Vector> vectorPath(Stack<Spot> path){
         Stack vPath=new Stack<Vector>();
         Spot current=path.pop(),peek=path.peek();
@@ -356,7 +394,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         return s2;
     }
 
-
+    /**
+     * This method gets the phones rotation and returns it's Direction (North, west, etc..)
+     */
     public int directionGet(double rotation){
         int direction=0;
         if(rotation>=22.5&&rotation<=67.5){
@@ -386,6 +426,11 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         return  direction;
     }
 
+    /**
+     * This method get a direction's number in integer and returns it's name in String
+     * @param x
+     * @return
+     */
     public String directionName(int x){
         switch (x){
             case 0: return "N";
@@ -400,6 +445,12 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         }
     }
 
+    /**
+     * This method is activated when a sensor is changed
+     * if its the step counter- the app will adjust the instructions (if the user is walking in the right direction it will subtract one step from the instructions,
+     * and if the user is wrong it will add an instruction to get him back to the path).
+     * if its the magnetic field sensor or its the accelerometer thier values will be saved and the combination of these two will determine the phones rotation.
+     */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         if(downladed) {
@@ -464,11 +515,17 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         }
     }
 
+    /**
+     * This method is unused in my app but it is necessary to implement it to use the sensors
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
 
+    /**
+     * While the activity is running this method registers the step counter
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -479,6 +536,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
     }
 
+    /**
+     * When the activity is paused this method unregisters the step counter
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -487,6 +547,10 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         }
     }
 
+    /**
+     * This method sends the user to the list instructions activity with a list of all the instructions found in pathV
+     * @param view
+     */
     public void listVector(View view) {
         ArrayList<String> instructions=new ArrayList<String>();
         Stack<Vector> Stmp=new Stack<Vector>();
