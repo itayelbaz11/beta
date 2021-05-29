@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="horizontal"
 android:gravity="center"
-tools:context=".activities.AddingPlace"
+tools:context=".AddingPlace"
 android:background="#3B4287">
 
 

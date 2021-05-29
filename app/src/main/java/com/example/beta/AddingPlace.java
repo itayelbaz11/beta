@@ -1,4 +1,4 @@
-package com.example.beta.activities;
+package com.example.beta;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,10 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.beta.CreatingPath;
-import com.example.beta.Map;
-import com.example.beta.Place;
-import com.example.beta.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;

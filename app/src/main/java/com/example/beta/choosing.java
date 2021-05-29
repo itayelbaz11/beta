@@ -22,7 +22,7 @@ public class choosing extends AppCompatActivity {
      * @param view
      */
     public void guider(View view) {
-        Intent si = new Intent(choosing.this,ChoosingGuideMap.class);
+        Intent si = new Intent(choosing.this, ChoosingGuideMap.class);
         startActivity(si);
     }
 
@@ -31,7 +31,7 @@ public class choosing extends AppCompatActivity {
      * @param view
      */
     public void navigator(View view) {
-        Intent si = new Intent(choosing.this,SearchingPath.class);
+        Intent si = new Intent(choosing.this, SearchingPath.class);
         startActivity(si);
     }
 
@@ -53,11 +53,8 @@ public class choosing extends AppCompatActivity {
      */
     public boolean onOptionsItemSelected (MenuItem item) {
         int id=item.getItemId();
-        if (id==R.id.choosingI) {
-
-        }
-        else if (id==R.id.creditsI) {
-            Intent si = new Intent(choosing.this,credits.class);
+        if (id==R.id.creditsI) {
+            Intent si = new Intent(choosing.this, credits.class);
             startActivity(si);
         }
         else if (id==R.id.logoutI) {
@@ -65,7 +62,7 @@ public class choosing extends AppCompatActivity {
             SharedPreferences.Editor editor=settings.edit();
             editor.putBoolean("stayConnect",false);
             editor.commit();
-            Intent si = new Intent(choosing.this,Login.class);
+            Intent si = new Intent(choosing.this, Login.class);
             startActivity(si);
         }
         return true;

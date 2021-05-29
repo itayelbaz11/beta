@@ -18,7 +18,7 @@
         <activity android:name=".StartingAndEnding" />
         <activity android:name=".SearchingPath" />
         <activity android:name=".NewPath" />
-        <activity android:name=".activities.AddingPlace" />
+        <activity android:name=".AddingPlace" />
         <activity android:name=".CreatingPath" />
         <activity android:name=".ChoosingStartingPoint" />
         <activity

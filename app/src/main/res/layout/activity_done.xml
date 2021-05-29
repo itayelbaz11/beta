@@ -74,29 +74,13 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:background="#FF0000"
-                android:fontFamily="@font/faster_one"
-                android:onClick="info"
-                android:text="info"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:background="#9AA0DC"
                 android:fontFamily="@font/faster_one"
                 android:onClick="back"
-                android:text="back"
+                android:text="back to start"
                 android:textSize="20sp" />
 
             <Space

@@ -55,4 +55,9 @@ public class listViewVector extends AppCompatActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         view.setBackgroundColor(Color.RED);
     }
+
+    public void doneV(View view) {
+        Intent si=new Intent(listViewVector.this,Done.class);
+         startActivity(si);
+    }
 }

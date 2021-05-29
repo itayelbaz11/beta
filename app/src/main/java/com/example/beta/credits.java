@@ -13,6 +13,10 @@ public class credits extends AppCompatActivity {
         setContentView(R.layout.activity_credits);
     }
 
+    /**
+     * This method turns the user back to the previous activity
+     * @param view
+     */
     public void back(View view) {
         finish();
     }
