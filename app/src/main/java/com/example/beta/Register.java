@@ -57,7 +57,8 @@ public class Register extends AppCompatActivity {
 
 
     /**
-     * REGISTERING
+     * REGISTERING with e-mail and password to the firbase authentication
+     * it also saves the users information in the realtime database
      * @param view
      */
     public void register(View view) {

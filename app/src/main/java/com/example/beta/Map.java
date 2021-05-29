@@ -3,6 +3,10 @@ package com.example.beta;
 import java.util.ArrayList;
 
 public class Map {
+
+    /**
+     * This class was created to create maps and uploading them to firbase
+     */
     private String uid,mapname,uidcreator;
     private ArrayList<Place> places;
     boolean publicc;

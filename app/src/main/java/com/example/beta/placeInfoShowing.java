@@ -62,6 +62,10 @@ public class placeInfoShowing extends AppCompatActivity {
         }
     }
 
+    /**
+     * Downloading the places image from the firebase storage
+     * @throws IOException
+     */
     public void Download() throws IOException {
         StorageReference refImages=refStor.child(photo+".jpg");
         final File localFile;
@@ -86,6 +90,10 @@ public class placeInfoShowing extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method sends the user back to the previous activity.
+     * @param view
+     */
     public void endAcivity(View view) {
         finish();
     }

@@ -32,6 +32,10 @@ public class Spot {
         this.f = f;
     }
 
+    /**
+     * adding all of the object's neigbor to its own neighbors list
+     * @param grid
+     */
     public void addNeighbors(Spot[][] grid) {
         int i = this.i;
         int j = this.j;

@@ -69,13 +69,14 @@ public class NewPath extends AppCompatActivity {
 
     }
 
-    private String getExtension(Uri uri){
-        ContentResolver cr=getContentResolver();
-        MimeTypeMap mimeTypeMap=MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(cr.getType(uri));
-    }
 
-
+    /**
+     * This method creates a one color bitmap and returns it
+     * @param width
+     * @param height
+     * @param color the color that is chosen to be on the bitmap
+     * @return
+     */
     public static Bitmap createImage(int width, int height, int color) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -86,7 +87,10 @@ public class NewPath extends AppCompatActivity {
     }
 
 
-
+    /**
+     * This method creates the new map, it saves its attributes on the realtime database and uploads the maps image to the storage
+     * @param view
+     */
     public void newPathName(View view) {
         boolean theresSize=false;
 
@@ -190,6 +194,10 @@ public class NewPath extends AppCompatActivity {
     }
 
 
+    /**
+     * These three methods makes sure that only one option is chosen
+     * @param view
+     */
     public void sClick(View view) {
         mCB.setChecked(false);
         lCB.setChecked(false);

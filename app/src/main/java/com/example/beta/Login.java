@@ -40,6 +40,9 @@ public class Login extends AppCompatActivity {
 
     }
 
+    /**
+     * when the activity starts the phone makes sure if the user is already logged in (stay connected) or not, if he logged in, he is sent to the choosing activity automatically
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -53,11 +56,19 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method sends the user to the registration activity
+     * @param view
+     */
     public void register(View view) {
         Intent si=new Intent(this,Register.class);
         startActivity(si);
     }
 
+    /**
+     * This method checks with the firbase authentication if the e-mail ad the password are true and if they do, it will enter the user to the app
+     * @param view
+     */
     public void logIn(View view) {
         email=emailL.getText().toString();
         password=passwordL.getText().toString();

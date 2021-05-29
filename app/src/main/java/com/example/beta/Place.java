@@ -1,5 +1,8 @@
 package com.example.beta;
 
+/**
+ * this class sets the places object's attributes
+ */
 public class Place {
     private int x,y;
     String name,photo,description;

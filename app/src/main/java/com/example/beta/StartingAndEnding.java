@@ -96,6 +96,10 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
 
     }
 
+    /**
+     * searhing a place by name in the starting's list view
+     * @param view
+     */
     public void searchStart(View view) {
         String tmpSt=startingET.getText().toString();
         for (int i=0;i<Plist.size()-1;i++){
@@ -109,6 +113,10 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         isSearch1=true;
     }
 
+    /**
+     * This method sends the user to the place info showing activity with the information on the chosen starting place
+     * @param view
+     */
     public void infoStart(View view){
         if(ready1){
             Intent si = new Intent(StartingAndEnding.this,placeInfoShowing.class);
@@ -124,6 +132,10 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         }
     }
 
+    /**
+     * searhing a place by name in the ending's list view
+     * @param view
+     */
     public void searchEnd(View view) {
         String tmpSt=startingET.getText().toString();
         for (int i=0;i<Plist.size()-1;i++){
@@ -137,6 +149,10 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         isSearch2=true;
     }
 
+    /**
+     * This method sends the user to the place info showing activity with the information on the chosen ending place
+     * @param view
+     */
     public void infoEnd(View view) {
         if(ready2){
             Intent si = new Intent(StartingAndEnding.this,placeInfoShowing.class);
@@ -152,6 +168,10 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         }
     }
 
+    /**
+     * This method sends the user to the
+     * @param view
+     */
     public void startNavigating(View view) {
         if(ready1&&ready2){
             Intent si = new Intent(StartingAndEnding.this,Navigating.class);
@@ -168,6 +188,14 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
         }
     }
 
+    /**
+     * This method is activated when a list view item is clicked,
+     * the clicked item in the specific list view that was clicked will be saved as one of the users choices, and the item will be colord in red
+     * @param adapterView
+     * @param view
+     * @param position
+     * @param l
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
             view.setBackgroundColor(Color.RED);
@@ -193,6 +221,11 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
 
     }
 
+
+    /**
+     * This method will cancel the searches that had been clicked, and color the list view back to its original color
+     * @param view
+     */
     public void cancelsearches(View view) {
         isSearch1=false;
         isSearch2=false;

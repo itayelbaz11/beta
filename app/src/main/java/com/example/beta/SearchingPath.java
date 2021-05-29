@@ -42,6 +42,10 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
         lvSP.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
+    /**
+     * Searching paths by a name that is written in the searching line.
+     * @param view
+     */
     public void searchP(View view) {
         String pathname;
         pathname=pathnameET.getText().toString();
@@ -80,6 +84,9 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
         });
     }
 
+    /**
+     * When a map's name is clicked the user is sent to the choosing stating and ending points activity, this activity will send the aps id to the next activity
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         Intent si = new Intent(SearchingPath.this,StartingAndEnding.class);
