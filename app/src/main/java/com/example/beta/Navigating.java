@@ -90,9 +90,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
         sensorManager=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer=sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(Navigating.this,accelerometer,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(Navigating.this,accelerometer,SensorManager.SENSOR_DELAY_FASTEST);
         magnometer=sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        sensorManager.registerListener(Navigating.this,magnometer,SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(Navigating.this,magnometer,SensorManager.SENSOR_DELAY_FASTEST);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -139,8 +139,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                 }
                 start=grid[xStart][yStart];
                 end=grid[xEnd][yEnd];
-
-
+                Spath=pathFinding(start,end,grid);
+                pathV=vectorPath(Spath);
                 downladed=true;
                 pd.dismiss();
             }
@@ -187,10 +187,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     }
 
     public void stopW(View view) {
-        final ProgressDialog pd=ProgressDialog.show(this,"PIC","working... ",true);
-        Spath=pathFinding(start,end,grid);
-        pathV=vectorPath(Spath);
-        pd.dismiss();
+
        // isWalking=false;
        // usersPermission=false;
     }
@@ -356,33 +353,6 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         return s2;
     }
 
-    public void navigationU(Stack<Vector> path){
-        while(!path.isEmpty()){
-            Vector tmp=path.peek();
-            while(tmp.steps!=0){
-                tvSteps.setText(tmp.steps);
-                tvDirection.setText(tmp.direction);
-                if(stepsB){
-                    stepsB=false;
-                    Vector peekV=path.peek();
-                    int direction=directionGet(rotation);
-                    if(direction==peekV.direction){
-                        path.peek().steps--;
-                    }
-                    else{
-                        if(direction==(peekV.direction+4)%8){
-                            peekV.steps++;
-                        }
-                        else{
-                            path.push(new Vector((direction+4)%8,1));
-                        }
-                    }
-                }
-            }
-            path.pop();
-        }
-
-    }
 
     public int directionGet(double rotation){
         int direction=0;
@@ -448,6 +418,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
                     azimuth = orientation[0];
                     rotation = (float) ((Math.toDegrees(azimuth) + 360) % 360);
+                    tvCurrentDirection.setText("Current Direction"+directionName(directionGet(rotation)));
                 }
             }
 
@@ -499,7 +470,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     protected void onResume() {
         super.onResume();
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
-            sensorManager.registerListener(this,mStepCounter,SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this,mStepCounter,SensorManager.SENSOR_DELAY_FASTEST);
 
         }
 
