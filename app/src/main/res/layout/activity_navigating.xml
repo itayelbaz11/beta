@@ -139,7 +139,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="startW"
                 android:text="start walking"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -154,7 +154,22 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="stopW"
                 android:text="pause"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="#9AA0DC"
+                android:fontFamily="@font/faster_one"
+                android:onClick="listVector"
+                android:text="LIST"
+                android:textSize="18sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -167,7 +182,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10" />
+
+
+
     </LinearLayout>
+
+
 
     <Space
         android:layout_width="0dp"

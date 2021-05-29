@@ -172,6 +172,10 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                 public void onClick(DialogInterface dialogInterface, int i) {
                     usersPermission=true;
                     isWalking=true;
+                    if(!pathV.isEmpty()) {
+                        tvSteps.setText("Stepse:"+pathV.peek().steps);
+                        tvDirection.setText("Direction:"+directionName(pathV.peek().direction));
+                    }
                     dialogInterface.cancel();
                 }
             });
@@ -187,9 +191,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     }
 
     public void stopW(View view) {
-
-       // isWalking=false;
-       // usersPermission=false;
+        isWalking=false;
+        usersPermission=false;
     }
 
     public Stack<Spot> pathFinding(Spot start, Spot end, Spot[][] grid){
@@ -482,5 +485,22 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
             sensorManager.unregisterListener(this,mStepCounter);
         }
+    }
+
+    public void listVector(View view) {
+        ArrayList<String> instructions=new ArrayList<String>();
+        Stack<Vector> Stmp=new Stack<Vector>();
+        Vector tmpV;
+        while(!pathV.isEmpty()){
+            tmpV=pathV.pop();
+            instructions.add("Steps:"+tmpV.steps+"  Direction:"+directionName(tmpV.direction));
+            Stmp.push(tmpV);
+        }
+        while(!Stmp.isEmpty()){
+            pathV.push(Stmp.pop());
+        }
+        Intent si=new Intent(Navigating.this,listViewVector.class);
+        si.putStringArrayListExtra("instructions",instructions);
+        startActivity(si);
     }
 }
