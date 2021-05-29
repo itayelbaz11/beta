@@ -111,6 +111,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         endD=gi.getStringExtra("placeD");
         endPhoto=gi.getStringExtra("placePhoto");
 
+
+
         StorageReference refImages=refStor.child(mapId+".jpg");
         final long MAX_SIZE = 1024*1024;
         refImages.getBytes(MAX_SIZE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -118,6 +120,22 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
             public void onSuccess(byte[] bytes) {
                 bMap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 ivMap.setImageBitmap(bMap);
+                grid=new Spot[bMap.getWidth()][bMap.getHeight()];
+                for(int i=0;i<bMap.getWidth();i++){
+                    for(int j=0;j<bMap.getHeight();j++){
+                        if(bMap.getPixel(i,j)==Color.rgb(1,60,160)){
+                            wall=true;
+                        }
+                        grid[i][j]=new Spot(i,j,wall);
+                        wall=false;
+                    }
+                }
+
+                start=grid[xStart][yStart];
+                end=grid[xEnd][yEnd];
+
+                Spath=pathFinding(start,end,grid);
+                pathV=vectorPath(Spath);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -126,21 +144,9 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
             }
         });
 
-        for(int i=0;i<bMap.getWidth();i++){
-            for(int j=0;j<bMap.getHeight();j++){
-                 if(bMap.getPixel(i,j)==Color.rgb(1,60,160)){
-                     wall=true;
-                 }
-                 grid[i][j]=new Spot(i,j,wall);
-                 wall=false;
-            }
-        }
 
-        start=grid[xStart][yStart];
-        end=grid[xEnd][yEnd];
 
-        Spath=pathFinding(start,end,grid);
-        pathV=vectorPath(Spath);
+
 
 
 
@@ -433,5 +439,23 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
+            sensorManager.registerListener(this,mStepCounter,SensorManager.SENSOR_DELAY_NORMAL);
+
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)!=null){
+            sensorManager.unregisterListener(this,mStepCounter);
+        }
     }
 }

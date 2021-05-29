@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.beta.activities.AddingPlace;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -175,7 +176,7 @@ public class NewPath extends AppCompatActivity {
             places.add(tmpP);
             newMap=new Map(mapId,pathName,id,places,publicc);
             refMaps.child(mapId).setValue(newMap);
-            Intent si = new Intent(NewPath.this,AddingPlace.class);
+            Intent si = new Intent(NewPath.this, AddingPlace.class);
             si.putExtra("mapId",mapId);
             si.putExtra("x",xy/2);
             si.putExtra("y",xy/2);

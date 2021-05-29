@@ -80,7 +80,7 @@
                     android:text="Guider"
                     android:textColor="#E3E5FA"
                     android:autoSizeMinTextSize="6sp"
-                    android:autoSizeMaxTextSize="40sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:autoSizeTextType="uniform" />
 
                 <Space
@@ -118,7 +118,7 @@
                     android:text="Navigator"
                     android:textColor="#E3E5FA"
                     android:autoSizeMinTextSize="6sp"
-                    android:autoSizeMaxTextSize="35sp"
+                    android:autoSizeMaxTextSize="18sp"
                     android:autoSizeTextType="uniform" />
 
                 <Space

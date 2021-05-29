@@ -47,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
-            android:fontFamily="@font/faster_one"
-            android:text="hello, mt name is Itay and This is mt app "
+
+            android:text="hello, my name is Itay, I'm a 12th grade student,Teachers Name:Albert Levy,School:Harav Thumi Ramot, Year:2021"
             android:textColor="#E3E5FA"
             android:textSize="20sp" />
 
@@ -56,7 +56,23 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="7" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="#9AA0DC"
+            android:fontFamily="@font/faster_one"
+            android:onClick="back"
+            android:text="back"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="20" />
+
     </LinearLayout>
 
     <Space

@@ -18,10 +18,11 @@
         <activity android:name="com.example.beta.StartingAndEnding" />
         <activity android:name="com.example.beta.SearchingPath" />
         <activity android:name="com.example.beta.NewPath" />
-        <activity android:name="com.example.beta.AddingPlace" />
+        <activity android:name="com.example.beta.activities.AddingPlace" />
         <activity android:name="com.example.beta.CreatingPath" />
         <activity android:name="com.example.beta.ChoosingStartingPoint" />
-        <activity android:name="com.example.beta.ChoosingGuideMap" />
+        <activity android:name="com.example.beta.ChoosingGuideMap"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.example.beta.choosing" />
         <activity android:name="com.example.beta.Login" />
         <activity android:name="com.example.beta.Register" />

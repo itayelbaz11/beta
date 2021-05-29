@@ -1,19 +1,21 @@
-package com.example.beta;
+package com.example.beta.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.beta.CreatingPath;
+import com.example.beta.Map;
+import com.example.beta.Place;
+import com.example.beta.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -130,7 +132,7 @@ public class AddingPlace extends AppCompatActivity {
                 }
                 tmpMap.getPlaces().add(newPlace);
                 refMaps.child(mapId).setValue(tmpMap);
-                Intent si = new Intent(AddingPlace.this,CreatingPath.class);
+                Intent si = new Intent(AddingPlace.this, CreatingPath.class);
                 si.putExtra("mapId",mapId);
                 si.putExtra("x",pX);
                 si.putExtra("y",pY);
