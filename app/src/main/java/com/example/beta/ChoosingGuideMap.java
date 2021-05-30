@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.android.gms.common.util.CollectionUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +21,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.beta.FBref.refMaps;
 import static com.example.beta.FBref.refUsers;
@@ -118,6 +120,36 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
 
     }
 
+    private void fetchData( final List<DataSnapshot> dataSnapshotList) {
+        if(dataSnapshotList.isEmpty()) {
+            adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
+            lvCP.setAdapter(adp);
+        } else {
+            DataSnapshot data = dataSnapshotList.remove(dataSnapshotList.size() - 1);
+
+            Map mTmp = data.getValue(Map.class);
+            if(mTmp.publicc){
+                Mlist.add(mTmp);
+                st = mTmp.getMapname();
+                Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+                query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(final DataSnapshot d : snapshot.getChildren()) {
+                            User albert = d.getValue(User.class);
+                            st2 = albert.getName();
+                            MStList.add(st+" by:"+st2);
+                        }
+
+                        fetchData(dataSnapshotList);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) { }
+                });
+            }
+        }
+    }
+
     /**
      * this method shows public maps with the map name that was searched in the list view above,
      * it is activated when the serching button is clicked
@@ -127,34 +159,44 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
         String pathname;
         pathname=et.getText().toString();
         Query query = refMaps.orderByChild("mapname").equalTo(pathname);
+
+
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
-            //
+
             @Override
             public void onDataChange(DataSnapshot dS) {
                 MStList.clear();
                 Mlist.clear();
-                for(final DataSnapshot data : dS.getChildren()) {
-                   Map mTmp = data.getValue(Map.class);
-                   if(mTmp.publicc){
-                      Mlist.add(mTmp);
-                      st = mTmp.getMapname();
-                      Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
-                      query2.addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot snapshot) {
-                               for(final DataSnapshot d : snapshot.getChildren()) {
-                                   User albert = d.getValue(User.class);
-                                   st2 = albert.getName();
-                               }
-                           }
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError error) { }
-                       });
-                     MStList.add(st+" by:"+st2);
-                   }
+
+                final List<DataSnapshot> dataSnapshotList = new ArrayList<>();
+                for(DataSnapshot ds : dS.getChildren()) {
+                    dataSnapshotList.add(ds);
                 }
-                adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
-                lvCP.setAdapter(adp);
+
+                fetchData(dataSnapshotList);
+//                for(final DataSnapshot data : dS.getChildren()) {
+//                   Map mTmp = data.getValue(Map.class);
+//                   if(mTmp.publicc){
+//                      Mlist.add(mTmp);
+//                      st = mTmp.getMapname();
+//                      Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+//                      query2.addListenerForSingleValueEvent(new ValueEventListener() {
+//                           @Override
+//                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                               for(final DataSnapshot d : snapshot.getChildren()) {
+//                                   User albert = d.getValue(User.class);
+//                                   st2 = albert.getName();
+//                                   MStList.add(st+" by:"+st2);
+//                               }
+//                           }
+//                           @Override
+//                           public void onCancelled(@NonNull DatabaseError error) { }
+//                       });
+//                   }
+//                }
+//                adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
+//                lvCP.setAdapter(adp);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) { }
