@@ -62,10 +62,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:background="#E3E5FA"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Enter Password"
-            android:background="#E3E5FA"/>
+            android:inputType="textPassword" />
 
         <Space
             android:layout_width="match_parent"

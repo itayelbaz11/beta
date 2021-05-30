@@ -364,4 +364,8 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
     }
 
 
+    public void done(View view) {
+        Intent si=new Intent(CreatingPath.this,choosing.class);
+        startActivity(si);
+    }
 }
