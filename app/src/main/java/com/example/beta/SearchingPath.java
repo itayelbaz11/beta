@@ -51,7 +51,6 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
             DataSnapshot data = dataSnapshotList.remove(dataSnapshotList.size() - 1);
 
             Map mTmp = data.getValue(Map.class);
-            if(mTmp.publicc){
                 Mlist.add(mTmp);
                 st = mTmp.getMapname();
                 Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
@@ -69,7 +68,7 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) { }
                 });
-            }
+
         }
     }
 

@@ -249,12 +249,12 @@ public class CreatingPath extends AppCompatActivity implements SensorEventListen
 
     }
 
-    public boolean dontexceed(int x,int y,int xMax,int yMax){
-        if((x<xMax)&&(x<=0)&&(y<yMax)&&(x<=0)){
-            return true;
-        }
-        return false;
-    }
+   // public boolean dontexceed(int x,int y,int xMax,int yMax){
+   //     if((x<xMax)&&(x<=0)&&(y<yMax)&&(x<=0)){
+   //         return true;
+   //     }
+   //     return false;
+   // }
 
     /**
      * This method askes the users permission to track his walking and if he agrees it lets the sensors to start working

@@ -15,10 +15,14 @@
         <activity android:name=".placeInfoShowing" />
         <activity android:name=".Done" />
         <activity android:name=".Navigating" />
-        <activity android:name=".StartingAndEnding" />
-        <activity android:name=".SearchingPath" />
-        <activity android:name=".NewPath" />
-        <activity android:name=".AddingPlace" />
+        <activity android:name=".StartingAndEnding"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".SearchingPath"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".NewPath"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".AddingPlace"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".CreatingPath" />
         <activity android:name=".ChoosingStartingPoint" />
         <activity
