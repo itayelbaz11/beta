@@ -10,7 +10,6 @@ public class Map {
     private String uid,mapname,uidcreator;
     private ArrayList<Place> places;
     boolean publicc;
-    private int size;
 
     public Map(){}
     public Map(String uid,String mapname,String uidcreator,ArrayList<Place> places,boolean publicc){

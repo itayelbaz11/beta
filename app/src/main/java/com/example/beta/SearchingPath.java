@@ -17,6 +17,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.beta.FBref.refMaps;
 import static com.example.beta.FBref.refUsers;
@@ -42,6 +43,36 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
         lvSP.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
+    private void fetchData( final List<DataSnapshot> dataSnapshotList) {
+        if(dataSnapshotList.isEmpty()) {
+            adp = new ArrayAdapter<String>(SearchingPath.this,R.layout.support_simple_spinner_dropdown_item, MStList);
+            lvSP.setAdapter(adp);
+        } else {
+            DataSnapshot data = dataSnapshotList.remove(dataSnapshotList.size() - 1);
+
+            Map mTmp = data.getValue(Map.class);
+            if(mTmp.publicc){
+                Mlist.add(mTmp);
+                st = mTmp.getMapname();
+                Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+                query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(final DataSnapshot d : snapshot.getChildren()) {
+                            User albert = d.getValue(User.class);
+                            st2 = albert.getName();
+                            MStList.add(st+" by:"+st2);
+                        }
+
+                        fetchData(dataSnapshotList);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) { }
+                });
+            }
+        }
+    }
+
     /**
      * Searching paths by a name that is written in the searching line.
      * @param view
@@ -51,33 +82,40 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
         pathname=pathnameET.getText().toString();
         Query query = refMaps.orderByChild("mapname").equalTo(pathname);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
-            //
+
             @Override
             public void onDataChange(DataSnapshot dS) {
                 MStList.clear();
                 Mlist.clear();
-                for(final DataSnapshot data : dS.getChildren()) {
-                    Map mTmp = data.getValue(Map.class);
-                    if(mTmp.publicc){
-                        Mlist.add(mTmp);
-                        st = mTmp.getMapname();
-                        Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
-                        query2.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                for(final DataSnapshot d : snapshot.getChildren()) {
-                                    User albert = d.getValue(User.class);
-                                    st2 = albert.getName();
-                                }
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) { }
-                        });
-                        MStList.add(st+" by:"+st2);
-                    }
+
+                final List<DataSnapshot> dataSnapshotList = new ArrayList<>();
+                for(DataSnapshot ds : dS.getChildren()) {
+                    dataSnapshotList.add(ds);
                 }
-                adp = new ArrayAdapter<String>(SearchingPath.this,R.layout.support_simple_spinner_dropdown_item, MStList);
-                lvSP.setAdapter(adp);
+
+                fetchData(dataSnapshotList);
+//                for(final DataSnapshot data : dS.getChildren()) {
+//                   Map mTmp = data.getValue(Map.class);
+//                   if(mTmp.publicc){
+//                      Mlist.add(mTmp);
+//                      st = mTmp.getMapname();
+//                      Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
+//                      query2.addListenerForSingleValueEvent(new ValueEventListener() {
+//                           @Override
+//                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                               for(final DataSnapshot d : snapshot.getChildren()) {
+//                                   User albert = d.getValue(User.class);
+//                                   st2 = albert.getName();
+//                                   MStList.add(st+" by:"+st2);
+//                               }
+//                           }
+//                           @Override
+//                           public void onCancelled(@NonNull DatabaseError error) { }
+//                       });
+//                   }
+//                }
+//                adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
+//                lvCP.setAdapter(adp);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) { }

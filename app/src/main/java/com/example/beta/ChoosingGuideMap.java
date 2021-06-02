@@ -159,9 +159,6 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
         String pathname;
         pathname=et.getText().toString();
         Query query = refMaps.orderByChild("mapname").equalTo(pathname);
-
-
-
         query.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
