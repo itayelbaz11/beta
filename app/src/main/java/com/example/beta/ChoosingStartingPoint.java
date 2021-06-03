@@ -23,8 +23,8 @@ import static com.example.beta.FBref.refMaps;
 public class ChoosingStartingPoint extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     ListView lvSP;
-    ArrayList<Place> Plist=new ArrayList<Place>(); //רשימת עצמי place
-    ArrayList<String> PStList=new ArrayList<String>();//רשימת תצוגת שמות places
+    ArrayList<Place> Plist=new ArrayList<Place>();
+    ArrayList<String> PStList=new ArrayList<String>();
     ArrayAdapter adp;
     String st,id,mapid;
     private FirebaseAuth mPDAuth;

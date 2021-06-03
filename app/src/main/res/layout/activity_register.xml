@@ -33,9 +33,10 @@
             android:layout_height="0dp"
             android:layout_weight="10"
             android:fontFamily="@font/faster_one"
+            android:gravity="center"
             android:text="Register: "
             android:textColor="#E3E5FA"
-            android:textSize="48sp" />
+            android:textSize="32sp" />
 
         <Space
             android:layout_width="match_parent"

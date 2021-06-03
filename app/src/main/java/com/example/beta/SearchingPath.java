@@ -26,8 +26,8 @@ public class SearchingPath extends AppCompatActivity implements AdapterView.OnIt
 
     EditText pathnameET;
     ListView lvSP;
-    ArrayList<Map> Mlist=new ArrayList<Map>(); //רשימת עצמי מפה
-    ArrayList<String> MStList=new ArrayList<String>();//רשימת תצוגת שמות מפות
+    ArrayList<Map> Mlist=new ArrayList<Map>();
+    ArrayList<String> MStList=new ArrayList<String>();
     ArrayAdapter adp;
     String st,st2;
 

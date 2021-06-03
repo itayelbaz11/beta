@@ -29,8 +29,8 @@ import static com.example.beta.FBref.refUsers;
 public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     ListView lvCP;
-    ArrayList<Map> Mlist=new ArrayList<Map>(); //רשימת עצמי מפה
-    ArrayList<String> MStList=new ArrayList<String>();//רשימת תצוגת שמות מפות
+    ArrayList<Map> Mlist=new ArrayList<Map>();
+    ArrayList<String> MStList=new ArrayList<String>();
     ArrayAdapter adp;
     String st,st2,id;
     FirebaseUser user;

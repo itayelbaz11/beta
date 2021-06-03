@@ -299,7 +299,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     }
 
     /**
-     * This method returns the distance between two dots on a graph/map.-נוסחת מרחק קצר ביותר
+     * This method returns the distance between two dots on a graph/map.
      * @param n
      * @param end
      * @return

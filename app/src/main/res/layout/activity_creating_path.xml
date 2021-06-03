@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Create Paths:"
             android:textColor="#E3E5FA"
-            android:textSize="33sp" />
+            android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="startWalking"
                 android:text="start walking"
-                android:textSize="14sp" />
+                android:textSize="9sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -91,7 +91,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="cancel"
                 android:text="cancel"
-                android:textSize="20sp" />
+                android:textSize="9sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -106,7 +106,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="done"
                 android:text="done"
-                android:textSize="20sp" />
+                android:textSize="9sp" />
 
             <Space
                 android:layout_width="0dp"

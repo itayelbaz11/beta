@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Follow the instructions"
             android:textColor="#E3E5FA"
-            android:textSize="26sp" />
+            android:textSize="20sp" />
 
 
         <Space
@@ -69,7 +69,7 @@
             android:fontFamily="@font/faster_one"
             android:gravity="center"
             android:text=" Back  "
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:onClick="backV"/>
 
         <Space
@@ -87,7 +87,7 @@
             android:fontFamily="@font/faster_one"
             android:gravity="center"
             android:text=" Done!  "
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:onClick="doneV"/>
 
         <Space

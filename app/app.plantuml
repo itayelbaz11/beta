@@ -1,0 +1,189 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  namespace com.example.beta {
+    class com.example.beta.AddingPlace {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.BuildConfig {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.ChoosingGuideMap {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.ChoosingStartingPoint {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.CreatingPath {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Done {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.FBref {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Login {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.MainActivity {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Map {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Navigating {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.NewPath {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Place {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Register {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.SearchingPath {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Spot {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.StartingAndEnding {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.User {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Vector {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.choosing {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.credits {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.listViewVector {
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.placeInfoShowing {
+    }
+  }
+  
+
+  com.example.beta.AddingPlace -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.AddingPlace o-- com.example.beta.Place : newPlace
+  com.example.beta.AddingPlace o-- com.example.beta.Map : tmpMap
+  com.example.beta.ChoosingGuideMap .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.ChoosingGuideMap -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.ChoosingStartingPoint .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.ChoosingStartingPoint -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.ChoosingStartingPoint o-- com.example.beta.Map : map
+  com.example.beta.CreatingPath .up.|> android.hardware.SensorEventListener
+  com.example.beta.CreatingPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.CreatingPath o-- com.example.beta.Map : map
+  com.example.beta.Done -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Login -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Navigating .up.|> android.hardware.SensorEventListener
+  com.example.beta.Navigating -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Navigating o-- com.example.beta.Spot : end
+  com.example.beta.Navigating o-- com.example.beta.Spot : start
+  com.example.beta.Navigating o-- com.example.beta.Vector : tmpV
+  com.example.beta.NewPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.NewPath o-- com.example.beta.Map : mTmp
+  com.example.beta.NewPath o-- com.example.beta.Map : newMap
+  com.example.beta.Register -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Register o-- com.example.beta.User : userdb
+  com.example.beta.SearchingPath .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.SearchingPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Spot o-- com.example.beta.Spot : previous
+  com.example.beta.StartingAndEnding .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.StartingAndEnding -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.StartingAndEnding o-- com.example.beta.Map : map
+  com.example.beta.StartingAndEnding o-- com.example.beta.Place : tmpP1
+  com.example.beta.StartingAndEnding o-- com.example.beta.Place : tmpP2
+  com.example.beta.choosing -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.credits -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.listViewVector .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.listViewVector -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.placeInfoShowing -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

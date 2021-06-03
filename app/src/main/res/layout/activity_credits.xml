@@ -33,9 +33,9 @@
             android:layout_height="0dp"
             android:layout_weight="10"
             android:fontFamily="@font/faster_one"
-            android:text="Credits "
+            android:text="Credits: "
             android:textColor="#E3E5FA"
-            android:textSize="48sp" />
+            android:textSize="37sp" />
 
 
         <Space

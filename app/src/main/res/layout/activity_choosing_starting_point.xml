@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Choose A Place To Continue From:"
             android:textColor="#E3E5FA"
-            android:textSize="26sp" />
+            android:textSize="20sp" />
 
 
         <Space

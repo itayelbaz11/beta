@@ -35,7 +35,7 @@
             android:gravity="center"
             android:text="Starting Point"
             android:textColor="#E3E5FA"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -97,9 +97,9 @@
             android:background="#9AA0DC"
             android:fontFamily="@font/faster_one"
             android:gravity="center"
+            android:onClick="infoStart"
             android:text=" Information- Start "
-            android:textSize="20sp"
-            android:onClick="infoStart"/>
+            android:textSize="12sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -115,7 +115,7 @@
             android:gravity="center"
             android:text="Ending Point"
             android:textColor="#E3E5FA"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -176,9 +176,9 @@
             android:background="#9AA0DC"
             android:fontFamily="@font/faster_one"
             android:gravity="center"
+            android:onClick="infoEnd"
             android:text=" Information-End  "
-            android:textSize="20sp"
-            android:onClick="infoEnd"/>
+            android:textSize="12sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -194,7 +194,7 @@
             android:fontFamily="@font/faster_one"
             android:onClick="cancelsearches"
             android:text="    Cancel Searches    "
-            android:textSize="20sp" />
+            android:textSize="12sp" />
 
 
         <Space
@@ -210,9 +210,9 @@
             android:layout_weight="10"
             android:background="#C4FF0000"
             android:fontFamily="@font/faster_one"
+            android:onClick="startNavigating"
             android:text="    Start Navigating    "
-            android:textSize="20sp"
-            android:onClick="startNavigating"/>
+            android:textSize="18sp" />
 
 
 

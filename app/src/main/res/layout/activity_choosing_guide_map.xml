@@ -36,7 +36,7 @@
             android:fontFamily="@font/faster_one"
             android:text="Choose A Path:"
             android:textColor="#E3E5FA"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
 
         <Space
@@ -105,7 +105,7 @@
                 android:gravity="center"
                 android:onClick="myPaths"
                 android:text="My Paths"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -121,7 +121,7 @@
                 android:gravity="center"
                 android:onClick="publicPaths"
                 android:text="public paths"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <Space
@@ -149,7 +149,7 @@
                 android:gravity="center"
                 android:onClick="newPath"
                 android:text="new path"
-                android:textSize="20sp" />
+                android:textSize="12sp" />
 
             <Space
                 android:layout_width="0dp"

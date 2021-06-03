@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Follow The Instructions"
             android:textColor="#E3E5FA"
-            android:textSize="33sp" />
+            android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:gravity="center_vertical"
                 android:text="Steps:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:id="@+id/tvStepsN"/>
 
         </LinearLayout>
@@ -89,7 +89,7 @@
                 android:gravity="center_vertical"
                 android:text="Direction:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:id="@+id/tvDirectionN"/>
 
         </LinearLayout>
@@ -109,7 +109,7 @@
                 android:gravity="center_vertical"
                 android:text="Current Direction:"
                 android:textColor="#E3E5FA"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:id="@+id/tvCurrentDirectionN"/>
 
         </LinearLayout>
@@ -139,7 +139,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="startW"
                 android:text="start walking"
-                android:textSize="15sp" />
+                android:textSize="11sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -154,7 +154,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="stopW"
                 android:text="pause"
-                android:textSize="15sp" />
+                android:textSize="11sp" />
 
             <Space
                 android:layout_width="0dp"
@@ -169,7 +169,7 @@
                 android:fontFamily="@font/faster_one"
                 android:onClick="listVector"
                 android:text="LIST"
-                android:textSize="18sp" />
+                android:textSize="11sp" />
 
             <Space
                 android:layout_width="0dp"

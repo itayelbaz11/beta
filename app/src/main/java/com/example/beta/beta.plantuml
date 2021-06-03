@@ -1,0 +1,513 @@
+@startuml
+
+title __BETA's Class Diagram__\n
+
+  namespace com.example.beta {
+    class com.example.beta.AddingPlace {
+        + imguri : Uri
+        ~ dET : EditText
+        ~ firstTime : boolean
+        ~ mapId : String
+        ~ nET : EditText
+        ~ pDescription : String
+        ~ pName : String
+        ~ pURL : String
+        ~ pX : int
+        ~ pY : int
+        ~ picIv : ImageView
+        + createPlace()
+        + uploadPic()
+        # onActivityResult()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.ChoosingGuideMap {
+        ~ MStList : ArrayList<String>
+        ~ Mlist : ArrayList<Map>
+        ~ adp : ArrayAdapter
+        ~ et : EditText
+        ~ id : String
+        ~ img : ImageView
+        ~ lvCP : ListView
+        ~ st : String
+        ~ st2 : String
+        ~ user : FirebaseUser
+        + myPaths()
+        + newPath()
+        + onItemClick()
+        + publicPaths()
+        + searchP()
+        # onCreate()
+        - fetchData()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.ChoosingStartingPoint {
+        ~ PStList : ArrayList<String>
+        ~ Plist : ArrayList<Place>
+        ~ adp : ArrayAdapter
+        ~ id : String
+        ~ lvSP : ListView
+        ~ mapid : String
+        ~ st : String
+        ~ user : FirebaseUser
+        - mPDAuth : FirebaseAuth
+        + onItemClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.CreatingPath {
+        ~ accelerometer : Sensor
+        ~ adb : Builder
+        ~ azimuth : float
+        ~ bMap : Bitmap
+        ~ bMap2 : Bitmap
+        ~ downladpic : boolean
+        ~ isCounterSensorPresent : boolean
+        ~ mGeomagnetic : float[]
+        ~ mGravity : float[]
+        ~ mStepCounter : Sensor
+        ~ magnometer : Sensor
+        ~ mapIV : ImageView
+        ~ mapId : String
+        ~ rotation : float
+        ~ savedmap : Bitmap
+        ~ startwalkingtrue : boolean
+        ~ steps : int
+        ~ usersPermission : boolean
+        ~ x : int
+        ~ xS : int
+        ~ y : int
+        ~ yS : int
+        ~ z : int
+        - sensorManager : SensorManager
+        + cancel()
+        + done()
+        + onAccuracyChanged()
+        + onSensorChanged()
+        + pin()
+        + startWalking()
+        # onCreate()
+        # onPause()
+        # onResume()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Done {
+        ~ placeD : String
+        ~ placeName : String
+        ~ placePhoto : String
+        ~ x : int
+        ~ y : int
+        + back()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.FBref {
+        {static} + FBDB : FirebaseDatabase
+        {static} + FBST : FirebaseStorage
+        {static} + ImageImagesRef : StorageReference
+        {static} + refAuth : FirebaseAuth
+        {static} + refImages : StorageReference
+        {static} + refMaps : DatabaseReference
+        {static} + refPlaces : DatabaseReference
+        {static} + refStor : StorageReference
+        {static} + refUsers : DatabaseReference
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Login {
+        ~ cBstayconnect : CheckBox
+        ~ email : String
+        ~ emailL : EditText
+        ~ password : String
+        ~ passwordL : EditText
+        ~ stayConnect : boolean
+        + logIn()
+        + register()
+        # onCreate()
+        # onStart()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.MainActivity {
+        + register()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Map {
+        ~ publicc : boolean
+        - mapname : String
+        - places : ArrayList<Place>
+        - uid : String
+        - uidcreator : String
+        + Map()
+        + Map()
+        + getMapname()
+        + getPlaces()
+        + getUid()
+        + getUidcreator()
+        + isPublicc()
+        + setMapname()
+        + setPlaces()
+        + setPublicc()
+        + setUid()
+        + setUidcreator()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Navigating {
+        ~ E : int
+        ~ N : int
+        ~ NE : int
+        ~ NW : int
+        ~ S : int
+        ~ SE : int
+        ~ SW : int
+        ~ Spath : Stack<Spot>
+        ~ W : int
+        ~ accelerometer : Sensor
+        ~ adb : Builder
+        ~ azimuth : float
+        ~ bMap : Bitmap
+        ~ bitmap : Bitmap
+        ~ bmp : Bitmap
+        ~ downladed : boolean
+        ~ endD : String
+        ~ endPhoto : String
+        ~ grid : Spot[][]
+        ~ isCounterSensorPresent : boolean
+        ~ isWalking : boolean
+        ~ ivMap : ImageView
+        ~ mGeomagnetic : float[]
+        ~ mGravity : float[]
+        ~ mStepCounter : Sensor
+        ~ magnometer : Sensor
+        ~ mapId : String
+        ~ nameEnd : String
+        ~ nameStart : String
+        ~ pathV : Stack<Vector>
+        ~ rotation : float
+        ~ stepCount : int
+        ~ stepsB : boolean
+        ~ tvCurrentDirection : TextView
+        ~ tvDirection : TextView
+        ~ tvSteps : TextView
+        ~ usersPermission : boolean
+        ~ wall : boolean
+        ~ xEnd : int
+        ~ xStart : int
+        ~ yEnd : int
+        ~ yStart : int
+        - sensorManager : SensorManager
+        + directionGet()
+        + directionName()
+        + getDirection()
+        + heuristic()
+        + listVector()
+        + onAccuracyChanged()
+        + onSensorChanged()
+        + pathFinding()
+        + reverseS()
+        + startW()
+        + stopW()
+        + vectorPath()
+        # onCreate()
+        # onPause()
+        # onResume()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.NewPath {
+        + imguri : Uri
+        ~ bPath : Bitmap
+        ~ etPN : EditText
+        ~ id : String
+        ~ lCB : CheckBox
+        ~ mCB : CheckBox
+        ~ mstorageRef : StorageReference
+        ~ newName : boolean
+        ~ publicCB : CheckBox
+        ~ sCB : CheckBox
+        ~ user : FirebaseUser
+        ~ xy : int
+        {static} + createImage()
+        + lClick()
+        + mClick()
+        + newPathName()
+        + sClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Place {
+        ~ description : String
+        ~ name : String
+        ~ photo : String
+        - x : int
+        - y : int
+        + Place()
+        + Place()
+        + getDescription()
+        + getName()
+        + getPhoto()
+        + getX()
+        + getY()
+        + setDescription()
+        + setName()
+        + setPhoto()
+        + setX()
+        + setY()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Register {
+        ~ Email : EditText
+        ~ Name : EditText
+        ~ PassWord : EditText
+        ~ email : String
+        ~ name : String
+        ~ password : String
+        ~ uid : String
+        - mAuth : FirebaseAuth
+        + onStart()
+        + register()
+        # onCreate()
+        - updateUI()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.SearchingPath {
+        ~ MStList : ArrayList<String>
+        ~ Mlist : ArrayList<Map>
+        ~ adp : ArrayAdapter
+        ~ lvSP : ListView
+        ~ pathnameET : EditText
+        ~ st : String
+        ~ st2 : String
+        + onItemClick()
+        + searchP()
+        # onCreate()
+        - fetchData()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Spot {
+        + f : double
+        + g : double
+        + h : double
+        + i : int
+        + isNeighbord : boolean
+        + j : int
+        + neighbors : ArrayList<Spot>
+        + wall : boolean
+        + Spot()
+        + addNeighbors()
+        + getF()
+        + setF()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.StartingAndEnding {
+        ~ EndName : String
+        ~ PStList : ArrayList<String>
+        ~ Plist : ArrayList<Place>
+        ~ StartName : String
+        ~ adp : ArrayAdapter
+        ~ adp2 : ArrayAdapter
+        ~ endingET : EditText
+        ~ isSearch1 : boolean
+        ~ isSearch2 : boolean
+        ~ lvEd : ListView
+        ~ lvSt : ListView
+        ~ mapid : String
+        ~ ready1 : boolean
+        ~ ready2 : boolean
+        ~ st1 : String
+        ~ st2 : String
+        ~ startingET : EditText
+        ~ tmpPStList1 : ArrayList<String>
+        ~ tmpPStList2 : ArrayList<String>
+        ~ tmpPlist1 : ArrayList<Place>
+        ~ tmpPlist2 : ArrayList<Place>
+        ~ view1 : View
+        ~ view2 : View
+        + cancelsearches()
+        + infoEnd()
+        + infoStart()
+        + onItemClick()
+        + searchEnd()
+        + searchStart()
+        + startNavigating()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.User {
+        - active : Boolean
+        - email : String
+        - name : String
+        - uid : String
+        + User()
+        + User()
+        + getActive()
+        + getEmail()
+        + getName()
+        + getUid()
+        + setActive()
+        + setEmail()
+        + setName()
+        + setUid()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.Vector {
+        + direction : int
+        + steps : int
+        + Vector()
+        + getDirection()
+        + getSteps()
+        + setDirection()
+        + setSteps()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.choosing {
+        + guider()
+        + navigator()
+        + onCreateOptionsMenu()
+        + onOptionsItemSelected()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.credits {
+        + back()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.listViewVector {
+        ~ adp : ArrayAdapter
+        ~ instructions : ArrayList<String>
+        ~ lv : ListView
+        + backV()
+        + doneV()
+        + onItemClick()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.beta {
+    class com.example.beta.placeInfoShowing {
+        ~ Description : String
+        ~ Dtv : TextView
+        ~ Iv : ImageView
+        ~ NameTv : TextView
+        ~ Xtv : TextView
+        ~ Ytv : TextView
+        ~ name : String
+        ~ photo : String
+        ~ x : String
+        ~ xTmp : int
+        ~ y : String
+        ~ yTmp : int
+        + Download()
+        + endAcivity()
+        # onCreate()
+    }
+  }
+  
+
+  com.example.beta.AddingPlace -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.AddingPlace o-- com.example.beta.Place : newPlace
+  com.example.beta.AddingPlace o-- com.example.beta.Map : tmpMap
+  com.example.beta.ChoosingGuideMap .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.ChoosingGuideMap -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.ChoosingStartingPoint .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.ChoosingStartingPoint -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.ChoosingStartingPoint o-- com.example.beta.Map : map
+  com.example.beta.CreatingPath .up.|> android.hardware.SensorEventListener
+  com.example.beta.CreatingPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.CreatingPath o-- com.example.beta.Map : map
+  com.example.beta.Done -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Login -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Navigating .up.|> android.hardware.SensorEventListener
+  com.example.beta.Navigating -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Navigating o-- com.example.beta.Spot : end
+  com.example.beta.Navigating o-- com.example.beta.Spot : start
+  com.example.beta.Navigating o-- com.example.beta.Vector : tmpV
+  com.example.beta.NewPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.NewPath o-- com.example.beta.Map : mTmp
+  com.example.beta.NewPath o-- com.example.beta.Map : newMap
+  com.example.beta.Register -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Register o-- com.example.beta.User : userdb
+  com.example.beta.SearchingPath .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.SearchingPath -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.Spot o-- com.example.beta.Spot : previous
+  com.example.beta.StartingAndEnding .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.StartingAndEnding -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.StartingAndEnding o-- com.example.beta.Map : map
+  com.example.beta.StartingAndEnding o-- com.example.beta.Place : tmpP1
+  com.example.beta.StartingAndEnding o-- com.example.beta.Place : tmpP2
+  com.example.beta.choosing -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.credits -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.listViewVector .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.beta.listViewVector -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.beta.placeInfoShowing -up-|> androidx.appcompat.app.AppCompatActivity
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

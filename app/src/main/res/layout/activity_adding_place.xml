@@ -35,7 +35,7 @@ android:background="#3B4287">
         android:fontFamily="@font/faster_one"
         android:text="New Place:"
         android:textColor="#E3E5FA"
-        android:textSize="40sp" />
+        android:textSize="30sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@ android:background="#3B4287">
         android:fontFamily="@font/faster_one"
         android:text="Place's Name:"
         android:textColor="#E3E5FA"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -81,7 +81,7 @@ android:background="#3B4287">
         android:fontFamily="@font/faster_one"
         android:text="Place's Description:"
         android:textColor="#E3E5FA"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -111,7 +111,7 @@ android:background="#3B4287">
         android:fontFamily="@font/faster_one"
         android:text="Picture:"
         android:textColor="#E3E5FA"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <Space
         android:layout_width="match_parent"
