@@ -42,6 +42,8 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
     final int W=6;
     final int NW=7;
 
+    double distance;
+    String sDistance,sTime;
 
     ImageView ivMap;
     TextView tvSteps,tvDirection,tvCurrentDirection;
@@ -88,6 +90,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
         tvDirection=(TextView) findViewById(R.id.tvDirectionN);
         tvCurrentDirection=(TextView) findViewById(R.id.tvCurrentDirectionN);
 
+        distance=0;
         /**
          * Setting the sensors attributes
          */
@@ -180,9 +183,23 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
             isWalking=true;
         }
         else{
+
+            if(distance>1000){
+                sDistance=(int)(distance/1000)+"km";
+            }
+            else{
+                sDistance=(int)(distance)+"m";
+            }
+            double time=distance/1.111;
+            if(time>60){
+                sTime=(int)(time/60)+" minutes";
+            }
+            else{
+                sTime=(int)(time)+"seconds";
+            }
             adb=new AlertDialog.Builder(this);
             adb.setTitle("Users Permission");
-            adb.setMessage("The app is about to track your walking, do you agree?");
+            adb.setMessage("The app is about to track your walking, do you agree?"+"  distance:"+sDistance+"  estimated time:"+sTime);
             adb.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -331,6 +348,12 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                 }
                 else {
                     steps++;
+                }
+                if(temp%2==0){
+                    distance+=0.4;
+                }
+                else{
+                    distance+=0.565;
                 }
             }
             else{
@@ -492,6 +515,12 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
                                 tvCurrentDirection.setText("Current Direction:"+directionName(direction));
                                 if (direction == tmpV.direction) {
                                     pathV.peek().steps--;
+                                    if(direction%2==0){
+                                        distance-=0.4;
+                                    }
+                                    else{
+                                        distance-=0.565;
+                                    }
                                 } else {
                                     if (direction == (tmpV.direction + 4) % 8) {
                                         tmpV.steps++;
