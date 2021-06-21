@@ -100,19 +100,3 @@ public class placeInfoShowing extends AppCompatActivity {
 }
 
 
-/*
-    StorageReference refImages=refStor.child(tmpP1.photo+".jpg");
-    final File localFile= File.createTempFile(tmpP1.photo,"jpg");
-            refImages.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-@Override
-public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-        String filePath = localFile.getPath();
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-        //  iV.setImageBitmap(bitmap);
-        }
-        }).addOnFailureListener(new OnFailureListener() {
-@Override
-public void onFailure(@NonNull Exception exception) {
-        Toast.makeText(StartingAndEnding.this, "Image download failed", Toast.LENGTH_LONG).show();
-        }
-        });*/

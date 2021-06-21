@@ -172,28 +172,7 @@ public class ChoosingGuideMap extends AppCompatActivity implements AdapterView.O
                 }
 
                 fetchData(dataSnapshotList);
-//                for(final DataSnapshot data : dS.getChildren()) {
-//                   Map mTmp = data.getValue(Map.class);
-//                   if(mTmp.publicc){
-//                      Mlist.add(mTmp);
-//                      st = mTmp.getMapname();
-//                      Query query2 = refUsers.orderByChild("uid").equalTo(mTmp.getUidcreator());
-//                      query2.addListenerForSingleValueEvent(new ValueEventListener() {
-//                           @Override
-//                           public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                               for(final DataSnapshot d : snapshot.getChildren()) {
-//                                   User albert = d.getValue(User.class);
-//                                   st2 = albert.getName();
-//                                   MStList.add(st+" by:"+st2);
-//                               }
-//                           }
-//                           @Override
-//                           public void onCancelled(@NonNull DatabaseError error) { }
-//                       });
-//                   }
-//                }
-//                adp = new ArrayAdapter<String>(ChoosingGuideMap.this,R.layout.support_simple_spinner_dropdown_item, MStList);
-//                lvCP.setAdapter(adp);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) { }

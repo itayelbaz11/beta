@@ -2,24 +2,24 @@ package com.example.beta;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
+        import android.content.Intent;
+        import android.graphics.Color;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.EditText;
+        import android.widget.ListView;
+        import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.Query;
+        import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
-import static com.example.beta.FBref.refMaps;
+        import static com.example.beta.FBref.refMaps;
 
 public class StartingAndEnding extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -186,6 +186,9 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
             si.putExtra("placeD",tmpP2.getDescription());
             startActivity(si);
         }
+        else{
+            Toast.makeText(StartingAndEnding.this, "Please choose places", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -198,26 +201,30 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-            view.setBackgroundColor(Color.RED);
-            if(adapterView==lvSt) {
-                if (isSearch1) {
-                    tmpP1 = tmpPlist1.get(position);
-                } else {
-                    tmpP1 = Plist.get(position);
-                }
-                view1 = view;
-                ready1 = true;
+        view.setBackgroundColor(Color.RED);
+        if(adapterView==lvSt) {
+            if (isSearch1) {
+                tmpP1 = tmpPlist1.get(position);
+            } else {
+                tmpP1 = Plist.get(position);
+            }
+            if(view1!=null)
+              view1.setBackgroundColor(Color.rgb(227, 229, 250));
+            view1 = view;
+            ready1 = true;
+        }
+        else{
+            if(isSearch2){
+                tmpP2=tmpPlist2.get(position);
             }
             else{
-                    if(isSearch2){
-                        tmpP2=tmpPlist2.get(position);
-                    }
-                    else{
-                        tmpP2=Plist.get(position);
-                    }
-                    view2=view;
-                    ready2=true;
+                tmpP2=Plist.get(position);
             }
+            if(view2!=null)
+               view2.setBackgroundColor(Color.rgb(227, 229, 250));
+            view2=view;
+            ready2=true;
+        }
 
     }
 

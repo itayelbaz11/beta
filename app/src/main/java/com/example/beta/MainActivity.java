@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        register();
+                        login();
                     }
                 });
             }
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void register() {
+    public void login() {
         Intent si=new Intent(this,Login.class);
         startActivity(si);
 

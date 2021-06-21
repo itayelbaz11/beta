@@ -2,14 +2,14 @@ package com.example.beta;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.view.View;
 
 public class Done extends AppCompatActivity {
 
-   String placeName,placeD,placePhoto;
-   int x,y;
+    String placeName,placeD,placePhoto;
+    int x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
