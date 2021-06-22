@@ -495,7 +495,7 @@ public class Navigating extends AppCompatActivity implements SensorEventListener
 
                     azimuth = orientation[0];
                     rotation = (float) ((Math.toDegrees(azimuth) + 360) % 360);
-                    tvCurrentDirection.setText("Current Direction"+directionName(directionGet(rotation)));
+                    tvCurrentDirection.setText("Current Direction:"+directionName(directionGet(rotation)));
                 }
             }
 
