@@ -102,6 +102,8 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
      */
     public void searchStart(View view) {
         String tmpSt=startingET.getText().toString();
+        tmpPlist1.clear();
+        tmpPStList1.clear();
         for (int i=0;i<Plist.size()-1;i++){
             if(PStList.get(i).indexOf(tmpSt)!=-1){
                 tmpPlist1.add(Plist.get(i));
@@ -138,6 +140,8 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
      */
     public void searchEnd(View view) {
         String tmpSt=startingET.getText().toString();
+        tmpPlist2.clear();
+        tmpPStList2.clear();
         for (int i=0;i<Plist.size()-1;i++){
             if(PStList.get(i).indexOf(tmpSt)!=-1){
                 tmpPlist2.add(Plist.get(i));

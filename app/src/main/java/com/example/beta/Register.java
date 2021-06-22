@@ -63,36 +63,40 @@ public class Register extends AppCompatActivity {
      */
     public void register(View view) {
 
-        name=Name.getText().toString();
-        email=Email.getText().toString();
-        password=PassWord.getText().toString();
+        name = Name.getText().toString();
+        email = Email.getText().toString();
+        password = PassWord.getText().toString();
 
-
-        final ProgressDialog pd=ProgressDialog.show(this,"Register","Registering...",true);
-        refAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        pd.dismiss();
-                        if (task.isSuccessful()) {
-                            Log.d("MainActivity", "createUserWithEmail:success");
-                            FirebaseUser user = refAuth.getCurrentUser();
-                            uid = user.getUid();
-                            userdb=new User(name,email,uid,true);
-                            refUsers.child(uid).setValue(userdb);
-                            Toast.makeText(Register.this, "Successful registration", Toast.LENGTH_SHORT).show();
-                            Intent si = new Intent(Register.this,Login.class);
-                            si.putExtra("newuser",true);
-                            startActivity(si);
-                          } else {
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException)
-                                Toast.makeText(Register.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
-                            else {
-                                Log.w("MainActivity", "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Register.this, "User create failed.",Toast.LENGTH_LONG).show();
+        if (Name != null && !Name.equals("") && Email != null && !Email.equals("") && PassWord != null && !PassWord.equals("")) {
+            final ProgressDialog pd = ProgressDialog.show(this, "Register", "Registering...", true);
+            refAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            pd.dismiss();
+                            if (task.isSuccessful()) {
+                                Log.d("MainActivity", "createUserWithEmail:success");
+                                FirebaseUser user = refAuth.getCurrentUser();
+                                uid = user.getUid();
+                                userdb = new User(name, email, uid, true);
+                                refUsers.child(uid).setValue(userdb);
+                                Toast.makeText(Register.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                                Intent si = new Intent(Register.this, Login.class);
+                                si.putExtra("newuser", true);
+                                startActivity(si);
+                            } else {
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                                    Toast.makeText(Register.this, "User with e-mail already exist!", Toast.LENGTH_SHORT).show();
+                                else {
+                                    Toast.makeText(Register.this, "User create failed.", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
+        else{
+            Toast.makeText(Register.this, "please enter email password and name", Toast.LENGTH_LONG).show();
+        }
     }
+
 }

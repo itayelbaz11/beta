@@ -31,7 +31,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="13"
             android:fontFamily="@font/faster_one"
             android:gravity="center"
             android:text="Follow the instructions"

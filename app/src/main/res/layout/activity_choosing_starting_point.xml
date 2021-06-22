@@ -31,12 +31,12 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
+            android:layout_weight="15"
             android:fontFamily="@font/faster_one"
             android:gravity="center"
             android:text="Choose A Place To Continue From:"
             android:textColor="#E3E5FA"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
         <Space
