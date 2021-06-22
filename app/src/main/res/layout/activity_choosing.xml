@@ -79,9 +79,7 @@
                     android:gravity="center"
                     android:text="Guider"
                     android:textColor="#E3E5FA"
-                    android:autoSizeMinTextSize="6sp"
-                    android:autoSizeMaxTextSize="18sp"
-                    android:autoSizeTextType="uniform" />
+                    android:textSize="12sp" />
 
                 <Space
                     android:layout_width="match_parent"
@@ -117,9 +115,7 @@
                     android:gravity="center"
                     android:text="Navigator"
                     android:textColor="#E3E5FA"
-                    android:autoSizeMinTextSize="6sp"
-                    android:autoSizeMaxTextSize="18sp"
-                    android:autoSizeTextType="uniform" />
+                    android:textSize="12sp" />
 
                 <Space
                     android:layout_width="match_parent"
