@@ -50,7 +50,7 @@
 
             android:text="hello, my name is Itay, I'm a 12th grade student,Teachers Name:Albert Levy,School:Harav Thumi Ramot, Year:2021"
             android:textColor="#E3E5FA"
-            android:textSize="20sp" />
+            android:textSize="12sp" />
 
 
         <Space

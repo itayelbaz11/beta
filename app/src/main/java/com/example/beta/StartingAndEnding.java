@@ -178,17 +178,22 @@ public class StartingAndEnding extends AppCompatActivity implements AdapterView.
      */
     public void startNavigating(View view) {
         if(ready1&&ready2){
-            Intent si = new Intent(StartingAndEnding.this,Navigating.class);
-            si.putExtra("mapId",mapid);
-            si.putExtra("placeXstart",tmpP1.getX());
-            si.putExtra("placeYstart",tmpP1.getY());
-            si.putExtra("placeXend",tmpP2.getX());
-            si.putExtra("placeYend",tmpP2.getY());
-            si.putExtra("placeNamestart",tmpP1.getName());
-            si.putExtra("placeNameEnd",tmpP2.getName());
-            si.putExtra("placePhoto",tmpP2.getPhoto());
-            si.putExtra("placeD",tmpP2.getDescription());
-            startActivity(si);
+            if(tmpP1!=tmpP2) {
+                Intent si = new Intent(StartingAndEnding.this, Navigating.class);
+                si.putExtra("mapId", mapid);
+                si.putExtra("placeXstart", tmpP1.getX());
+                si.putExtra("placeYstart", tmpP1.getY());
+                si.putExtra("placeXend", tmpP2.getX());
+                si.putExtra("placeYend", tmpP2.getY());
+                si.putExtra("placeNamestart", tmpP1.getName());
+                si.putExtra("placeNameEnd", tmpP2.getName());
+                si.putExtra("placePhoto", tmpP2.getPhoto());
+                si.putExtra("placeD", tmpP2.getDescription());
+                startActivity(si);
+            }
+            else{
+                Toast.makeText(StartingAndEnding.this, "Please choose different places", Toast.LENGTH_SHORT).show();
+            }
         }
         else{
             Toast.makeText(StartingAndEnding.this, "Please choose places", Toast.LENGTH_SHORT).show();
